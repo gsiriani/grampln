@@ -20,7 +20,7 @@
 
 
 import nltk
-# import ancora  (Modulo para leer AnCora)
+import ancora  # (Modulo para leer AnCora)
 
 
 # Parte 1 - Corpus
@@ -31,9 +31,9 @@ class Corpus:
     Clase de funcionalidades sobre el corpus AnCora.
     """
 
-    def __init__(self, corpus_path='./relative-path/'):
+    def __init__(self, corpus_path='./ancora-2.0/'):
         # Cargar corpus desde 'corpus_path'
-        self.corpus =  # ...
+        self.corpus =  ancora.AncoraCorpusReader(corpus_path)
 
     ## Parte 1.1
     # a.
@@ -41,7 +41,7 @@ class Corpus:
         """
         Retorna la cantidad de oraciones del corpus.
         """
-        return # ...
+        return len(self.corpus.sents())
 
     # b.
     def oracion_mas_larga(self):
@@ -49,14 +49,34 @@ class Corpus:
         Retorna la oracion mas larga.
         (la primera si hay mas de una con el mismo largo)
         """
-       return # ...
+        # Obtengo la lista de oraciones
+        oraciones = self.corpus.sents()
+        # Inicializo las variables con la primer oracion de la lista
+        mas_larga = oraciones[0]    # oracion mas larga
+        largo_max = len(oraciones[0])          # largo de la oracion mas larga
+        for o in oraciones:
+            if len(o) > largo_max:
+                # Actualizo la oracion mas larga
+                largo_max = len(o)
+                mas_larga = o
+        return mas_larga
 
     # c.
     def largo_promedio_oracion(self):
         """
         Retorna el largo de oracion promedio.
         """
-        return # ...
+        # Obtengo la lista de oraciones
+        oraciones = self.corpus.sents()
+        # Obtengo cantidad de oraciones
+        cantidad_oraciones = len(self.corpus.sents())
+        # Obtengo suma del largo de las oraciones
+        suma_largos = 0
+        for o in oraciones:
+            suma_largos += len(o)
+        # Calculo promedio
+        promedio = suma_largos / cantidad_oraciones
+        return promedio
 
     # d.
     def palabras_frecs(self):
