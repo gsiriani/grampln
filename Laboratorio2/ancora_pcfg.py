@@ -84,7 +84,18 @@ class Corpus:
         Retorna un diccionario (dict) palabra-frecuencia de las palabras del corpus.
         (considerar las palabras en minúsculas)
         """
-        return # ...
+        # Creo el diccionario
+        diccionario = {}
+        # Obtengo lista de palabras
+        palabras = self.corpus.tagged_words()
+        # Recorro la lista de palabras
+        for (p,t) in palabras:
+            p_min = p.lower()
+            if diccionario.has_key(p_min):
+                diccionario[p_min] = diccionario[p_min] + 1
+            else:
+                diccionario[p_min] = 1
+        return diccionario
 
     # e.
      def palabras_frecs_cat(self):
