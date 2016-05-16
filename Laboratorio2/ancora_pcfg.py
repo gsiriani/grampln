@@ -98,31 +98,74 @@ class Corpus:
         return diccionario
 
     # e.
-     def palabras_frecs_cat(self):
+    def palabras_frecs_cat(self):
         """
         Retorna un diccionario (dict) palabra-lista de las palabras del corpus.
         Cada lista contiene la frecuencia por cada categoría de la palabra.
         (considerar las palabras en minúsculas)
         """
-        return # ...
+        # Creo el diccionario
+        diccionario = {}
+        # Obtengo lista de palabras
+        palabras = self.corpus.tagged_words()
+        # Recorro la lista de palabras
+        for (p,t) in palabras:
+            p_min = p.lower()
+            if diccionario.has_key(p_min):
+                if diccionario[p_min].has_key(t):
+                    diccionario[p_min][t] += 1
+                else:
+                    diccionario[p_min][t] = 1
+            else:
+                diccionario[p_min] = {}
+                diccionario[p_min][t] = 1
+        return diccionario
 
 
-
+        
     ## Parte 1.2
+
+    # Funcion auxiliar para contar los nodos de un arbol
+    def cantidad_nodos(self, t):
+        cant = 0
+        # Sumo todos los subarboles (nodos intermedios)
+        for subtree in t.subtrees():
+            cant += 1
+        # Sumo todas las hojas
+        for hoja in t.leaves():
+            cant += 1
+        return cant
+
     # a
     def arbol_min_nodos(self):
         """
         Retorna el árbol del corpus con la mínima cantidad de nodos.
         (el primero si hay mas de uno con la misma cantidad)
         """
-        return # ...
+        arboles = self.corpus.parsed_sents()
+        min_t = arboles[0]
+        min_nodos = self.cantidad_nodos(arboles[0])
+        for t in arboles:
+            c = self.cantidad_nodos(t)
+            if c < min_nodos:
+                min_nodos = c
+                min_t = t
+        return min_t
 
     def arbol_max_nodos(self):
         """
         Retorna el árbol del corpus con la máxima cantidad de nodos.
         (el primero si hay mas de uno con la misma cantidad)
         """
-        return # ...
+        arboles = self.corpus.parsed_sents()
+        max_t = arboles[0]
+        max_nodos = self.cantidad_nodos(arboles[0])
+        for t in arboles:
+            c = self.cantidad_nodos(t)
+            if c > max_nodos:
+                max_nodos = c
+                max_t = t
+        return max_t
 
 
     # b
@@ -130,7 +173,13 @@ class Corpus:
         """
         Retorna todos los árboles que contengan alguna palabra con lema 'lema'.
         """
-      return # ...
+        arboles = self.corpus.parsed_sents()
+        res = []
+        for subtree in arboles:
+            for aux in subtree.subtrees(filter = lambda t: t.label()==lema):
+                res.append(subtree)
+                break
+        return res
 
    
 
