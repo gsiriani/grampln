@@ -13,7 +13,7 @@
 #  Grupo: 08
 #
 #  Estudiante 1: Nom1 Nom2 Ap1 Ap2 - CI
-#  Estudiante 2:
+#  Estudiante 2: Santiago Paez Castro - 4848301-0
 #  Estudiante 3: Guillermo Daniel Siriani Cabrera - 4333712-7
 #
 #
@@ -98,31 +98,74 @@ class Corpus:
         return diccionario
 
     # e.
-     def palabras_frecs_cat(self):
+    def palabras_frecs_cat(self):
         """
         Retorna un diccionario (dict) palabra-lista de las palabras del corpus.
         Cada lista contiene la frecuencia por cada categoría de la palabra.
         (considerar las palabras en minúsculas)
         """
-        return # ...
+        # Creo el diccionario
+        diccionario = {}
+        # Obtengo lista de palabras
+        palabras = self.corpus.tagged_words()
+        # Recorro la lista de palabras
+        for (p,t) in palabras:
+            p_min = p.lower()
+            if diccionario.has_key(p_min):
+                if diccionario[p_min].has_key(t):
+                    diccionario[p_min][t] += 1
+                else:
+                    diccionario[p_min][t] = 1
+            else:
+                diccionario[p_min] = {}
+                diccionario[p_min][t] = 1
+        return diccionario
 
 
-
+        
     ## Parte 1.2
+
+    # Funcion auxiliar para contar los nodos de un arbol
+    def cantidad_nodos(self, t):
+        cant = 0
+        # Sumo todos los subarboles (nodos intermedios)
+        for subtree in t.subtrees():
+            cant += 1
+        # Sumo todas las hojas
+        for hoja in t.leaves():
+            cant += 1
+        return cant
+
     # a
     def arbol_min_nodos(self):
         """
         Retorna el árbol del corpus con la mínima cantidad de nodos.
         (el primero si hay mas de uno con la misma cantidad)
         """
-        return # ...
+        arboles = self.corpus.parsed_sents()
+        min_t = arboles[0]
+        min_nodos = self.cantidad_nodos(arboles[0])
+        for t in arboles:
+            c = self.cantidad_nodos(t)
+            if c < min_nodos:
+                min_nodos = c
+                min_t = t
+        return min_t
 
     def arbol_max_nodos(self):
         """
         Retorna el árbol del corpus con la máxima cantidad de nodos.
         (el primero si hay mas de uno con la misma cantidad)
         """
-        return # ...
+        arboles = self.corpus.parsed_sents()
+        max_t = arboles[0]
+        max_nodos = self.cantidad_nodos(arboles[0])
+        for t in arboles:
+            c = self.cantidad_nodos(t)
+            if c > max_nodos:
+                max_nodos = c
+                max_t = t
+        return max_t
 
 
     # b
@@ -130,7 +173,13 @@ class Corpus:
         """
         Retorna todos los árboles que contengan alguna palabra con lema 'lema'.
         """
-      return # ...
+        arboles = self.corpus.parsed_sents()
+        res = []
+        for subtree in arboles:
+            for aux in subtree.subtrees(filter = lambda t: t.label()==lema):
+                res.append(subtree)
+                break
+        return res
 
    
 
@@ -219,7 +268,26 @@ class PCFG_UNK(PCFG):
         """
         Induce PCFG grammar del corpus (treebank) considerando palabras UNK.
         """
-        return # ...
+		  unk_words = {k for k,v in self.wordfrecs.iteritems() if v == 1}
+        
+        productions = []
+        for tree in corpus.corpus.parsed_sents():
+             productions += tree.productions()
+
+        new_productions = []
+        for pr in productions:
+            if len(pr.rhs()) == 1 and pr.rhs()[0] in unk_words:
+                new_pr = nltk.grammar.Production(pr.lhs(), ['UNK'])
+                new_productions.append(new_pr)
+            else:
+                new_productions.append(pr)
+
+
+        
+        S = nltk.Nonterminal('sentence')
+        
+        return nltk.induce_pcfg(S, new_productions)
+
 
 
     # Parte 3.2 (y 3.3)
@@ -228,8 +296,65 @@ class PCFG_UNK(PCFG):
         """
         Retorna el análisis sintáctico de la oración contemplando palabras UNK.
         """
-        return # ...
+        tokens = [w.lower() for w in nltk.word_tokenize(sentence)]
+        
+        all_words = {k for k,v in self.wordfrecs.iteritems()}
+        
+        unk_words = {k for k,v in self.wordfrecs.iteritems() if v == 1}
+        
+        unk_tokens = [w if w not in unk_words and w in all_words else "UNK" for w in tokens]
+        
+        # Si se hace esto, las palabras con frecuencia 1 no son reconocidas y el parser tira error, ej: juan.
+        #unk_tokens = [w if w in all_words else "UNK" for w in tokens]
+        
+        return self.parser.parse_one(unk_tokens)
 
+'''
+Parte 3.3
+pcfg_unk = PCFG_UNK()
+
+pcfg_unk.parse(pcfg_unk.sents[0])
+
+ En este caso, la unica palabra de la oracion que no se encuentra en la gramatica es "opera".
+ Por lo que la palabra se cambia por "UNK" y el parser la identifica como un nombre comun.
+ En este caso esta tecnica (cambiar palabras desconocidas por "UNK") produce un buen resultado.
+'''
+
+'''
+Parte 3.3b
+pcfg_unk.parse(pcfg_unk.sents[1])
+
+ En este caso, existen cuatro palabras que no se encuentran en el corpus y por ende son cambiadas por "UNK".
+ Dichas palabras son: pedro, juan, jugaran y campeonato.
+ El resultado que obtiene el parser no es bueno en este caso, no ayuda el hecho de que la mitad de la oracion
+ este compuesta por palabras desconocidas.
+'''
+
+'''
+Parte 3.4
+
+El uso de una tecnica como la utilizada en las partes 3.1 y 3.2 permite que nuestro parser sea capaz de procesar 
+oraciones que tengan palabras que no se encuentren en el corpus utilizado.
+Poder analizar oraciones con palabras desconocidas es una buena propiedad para un parser, ya que independientemente
+del tamanio del corpus utilizado para deducir las reglas de la gramatica, es dificil que dicho corpus posea todas las
+palabras del vocabulario.
+
+Como vimos en las oraciones de ejemplo analizadas, esta tecnica produce resultados de variada calidad. A medida que 
+que aumente la proporcion de palabras desconocidas en una oracion, resultara mas dificil para el parser realizar un
+analisis de calidad.
+
+Otro problema de esta tecnica es que al agrupar todas las reglas de palabras poco frecuentes como "UNK", corremos el
+riesgo de clasificar erroneamente algunas palabras. Esto sucede por ejemplo con la palabra "juan", la cual en el
+analisis obtenido es clasificada como un verbo, cuando en realidad es un nombre propio.
+
+Un enfoque alternativo podria ser el de analizar las palabras desconocidas de la oracion. Por ejemplo los nombres
+propio comienzan con mayuscula, como Pedro y Juan (con la salvedad de que en este caso Pedro se encuentra al comienzo
+de la oracion, donde resulta ambiguo su analisis), jugaran es una variacion del verbo jugar, el cual se encuentra en el 
+corpus y por lo tanto podria ser etiquetado como verbo.
+Aplicar este enfoque tiene una parte negativa, es necesario, una vez determinadas las categorias de las palabras
+desconocidas encontradas en la oracion a analizar, hay que agregar dichas reglas a la gramatica y hay que volver a 
+inferir el parser (actividades que son computacionalmente costosas).
+'''
 
 
 # Parte 4 - PCFG lexicalizada
