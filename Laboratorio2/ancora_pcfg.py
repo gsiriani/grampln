@@ -12,7 +12,7 @@
 #
 #  Grupo: 08
 #
-#  Estudiante 1: Nom1 Nom2 Ap1 Ap2 - CI
+#  Estudiante 1: Bruno Garate Schapira - 4941297-5
 #  Estudiante 2: Santiago Paez Castro - 4848301-0
 #  Estudiante 3: Guillermo Daniel Siriani Cabrera - 4333712-7
 #
@@ -20,6 +20,7 @@
 
 
 import nltk
+import nltk.parse
 import ancora  # (Modulo para leer AnCora)
 
 
@@ -209,21 +210,30 @@ class PCFG:
         """
         Induce PCFG del corpus.
         """
-        return # ...
+		        
+        productions = []
+        for tree in corpus.corpus.parsed_sents():
+             productions += tree.productions()
+
+        S = nltk.Nonterminal('sentence')
+        
+        return nltk.induce_pcfg(S, productions)
+
+
 
     # a
     def reglas_no_lexicas(self):
         """
         Retornas las reglas que no son léxicas.
         """
-        return # ...
+        return [p for p in self.grammar.productions() if p.is_nonlexical()]
 
     # b 
     def categorias_lexicas(self):
         """
         Retorna las categorías léxicas (se infieren de las reglas léxicas).
         """
-        return # ...
+        return {c.lhs() for c in self.grammar.productions() if c.is_lexical()}
         
 
     # c
@@ -231,83 +241,83 @@ class PCFG:
         """
         Retorna las reglas léxicas de categoría 'c'
         """
-        return # ...
+        return [p for p in self.grammar.productions() if p.is_lexical() and p.lhs().symbol() == c]
 
     ## Parte 2.2 (parser)
     def _generate_parser(self):
         """
         Generate Viterbi parser from grammar.
         """
-        return # ...
+        return nltk.parse.ViterbiParser(self.grammar)
 
     ## Parte 2.3 (sentences)
     def parse(self, sentence):
         """
         Parse sentence and return ProbabilisticTree.
         """
-        return # ...
+	
+        return self.parser.parse_one(sentence.split());
 
 
 
 # Parte 3 - PCFG con palabras desconocidas
 ##########################################
 
-
 class PCFG_UNK(PCFG):
-    """
+   #"""
     Clase de funcionalidades sobre PCFG de AnCora con UNK words.
-    """
+   #"""
 
-    sents = [   u'El domingo próximo se presenta la nueva temporada de ópera .', #a (2.3.c)
-                u'Pedro y Juan jugarán el campeonato de fútbol .', #b 
-            ]
+   #sents = [   u'El domingo próximo se presenta la nueva temporada de ópera .', #a (2.3.c)
+               #u'Pedro y Juan jugarán el campeonato de fútbol .', #b 
+           #]
 
 
-    # Parte 3.1
+   ## Parte 3.1
     def _induce_pcfg(self, corpus):
-        """
+       #"""
         Induce PCFG grammar del corpus (treebank) considerando palabras UNK.
-        """
-		  unk_words = {k for k,v in self.wordfrecs.iteritems() if v == 1}
+       #"""
+		  #unk_words = {k for k,v in self.wordfrecs.iteritems() if v == 1}
         
-        productions = []
+       #productions = []
         for tree in corpus.corpus.parsed_sents():
-             productions += tree.productions()
+            #productions += tree.productions()
 
-        new_productions = []
+       #new_productions = []
         for pr in productions:
-            if len(pr.rhs()) == 1 and pr.rhs()[0] in unk_words:
-                new_pr = nltk.grammar.Production(pr.lhs(), ['UNK'])
+           #if len(pr.rhs()) == 1 and pr.rhs()[0] in unk_words:
+               #new_pr = nltk.grammar.Production(pr.lhs(), ['UNK'])
                 new_productions.append(new_pr)
-            else:
-                new_productions.append(pr)
+           #else:
+               #new_productions.append(pr)
 
 
-        
+       #
         S = nltk.Nonterminal('sentence')
-        
+       #
         return nltk.induce_pcfg(S, new_productions)
 
 
 
-    # Parte 3.2 (y 3.3)
+   ## Parte 3.2 (y 3.3)
 
-    def parse(self, sentence):
-        """
+   #def parse(self, sentence):
+       #"""
         Retorna el análisis sintáctico de la oración contemplando palabras UNK.
-        """
+       #"""
         tokens = [w.lower() for w in nltk.word_tokenize(sentence)]
-        
+       #
         all_words = {k for k,v in self.wordfrecs.iteritems()}
-        
+       #
         unk_words = {k for k,v in self.wordfrecs.iteritems() if v == 1}
-        
+       #
         unk_tokens = [w if w not in unk_words and w in all_words else "UNK" for w in tokens]
-        
+       #
         # Si se hace esto, las palabras con frecuencia 1 no son reconocidas y el parser tira error, ej: juan.
-        #unk_tokens = [w if w in all_words else "UNK" for w in tokens]
+       ##unk_tokens = [w if w in all_words else "UNK" for w in tokens]
         
-        return self.parser.parse_one(unk_tokens)
+       #return self.parser.parse_one(unk_tokens)
 
 '''
 Parte 3.3
@@ -315,18 +325,18 @@ pcfg_unk = PCFG_UNK()
 
 pcfg_unk.parse(pcfg_unk.sents[0])
 
- En este caso, la unica palabra de la oracion que no se encuentra en la gramatica es "opera".
+#En este caso, la unica palabra de la oracion que no se encuentra en la gramatica es "opera".
  Por lo que la palabra se cambia por "UNK" y el parser la identifica como un nombre comun.
- En este caso esta tecnica (cambiar palabras desconocidas por "UNK") produce un buen resultado.
+#En este caso esta tecnica (cambiar palabras desconocidas por "UNK") produce un buen resultado.
 '''
 
 '''
 Parte 3.3b
 pcfg_unk.parse(pcfg_unk.sents[1])
 
- En este caso, existen cuatro palabras que no se encuentran en el corpus y por ende son cambiadas por "UNK".
+#En este caso, existen cuatro palabras que no se encuentran en el corpus y por ende son cambiadas por "UNK".
  Dichas palabras son: pedro, juan, jugaran y campeonato.
- El resultado que obtiene el parser no es bueno en este caso, no ayuda el hecho de que la mitad de la oracion
+#El resultado que obtiene el parser no es bueno en este caso, no ayuda el hecho de que la mitad de la oracion
  este compuesta por palabras desconocidas.
 '''
 
@@ -363,17 +373,17 @@ inferir el parser (actividades que son computacionalmente costosas).
 # 1
 
 class PCFG_LEX(PCFG):
-    """
+   #"""
     PCFG de AnCora con lexicalización en primer nivel.
-    """
+   #"""
 
-    sents = [   u'El juez vino que avión .', #
-            ]                
+   #sents = [   u'El juez vino que avión .', #
+           #]                
 
-    def _induce_pcfg(self, corpus):
-        """
+   #def _induce_pcfg(self, corpus):
+       #"""
         Induce PCFG del corpus considerando lexicalización en primer nivel.
-        """
+       #"""
         return # ...
 
 
@@ -383,20 +393,20 @@ class PCFG_LEX(PCFG):
 # 2
 
 class PCFG_LEX_VERB(PCFG):
-    """
+   #"""
     PCFG de AnCora con lexicalización en primer nivel y grupos verbales (grup.verb).
-    """
+   #"""
 
-    sents = [   u'El juez manifestó su apoyo al gobierno .', # i
-                u'El juez opinó su apoyo al gobierno .', # ii
+   #sents = [   u'El juez manifestó su apoyo al gobierno .', # i
+               #u'El juez opinó su apoyo al gobierno .', # ii
 
-                u'El juez manifestó que renunciará .', # 4.2.c
-            ]                
+               #u'El juez manifestó que renunciará .', # 4.2.c
+           #]                
 
-    def _induce_pcfg(self, corpus):
-        """
+   #def _induce_pcfg(self, corpus):
+       #"""
         Induce PCFG del corpus considerando lexicalización en primer nivel y grupos verbales.
-        """
+       #"""
         return # ...
 
 
