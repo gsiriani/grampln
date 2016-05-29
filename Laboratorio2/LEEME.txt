@@ -1,0 +1,40 @@
+Buenas!
+
+Cree una branch nueva porque cambie bastantes cosas.
+Aca va una explicacion rapida de las cosas que cambie.
+
+Hice la parte 4.
+
+Para hacer la parte 4 precisaba algunas cosas de las partes 1 y 2. Mirando en Trello
+pense que la parte 2 todavia no estaba hecha, asi que la hice (recien ahora que voy
+a commitear veo que estaba hecha hace 5 dias jeje).
+
+La parte 2 que hice yo es muy parecida a la que hizo bruno, las mire por arriba y
+creo que hacemos lo mismo.
+
+De la parte 1 fui a mirar como se obtenian los lemas de las palabras, porque hay un
+metodo que se llama "arboles_con_lema" (que lo precisaba para la parte 4). Ahi hay una confusion, porque el metodo implementado esta usando las categorias lexicas en lugar
+de los lemas de las palabras.
+Por ejemplo: La palabra 'estimó' tiene cat. lexica "vmis3s0" y lema "estimar".
+Los lemas estan en el corpus marcados con el atributo "lem" y el archivo "ancora.py"
+que teniamos no cargaba estos datos a la clase Corpus.
+Por eso modifique el archivo "ancora.py" y ahora carga los lemas a la clase Corpus.
+
+Despues cambie algunos de los metodos para que usen funcionalidades de nltk.
+Las cosas que pide la parte 1 se pueden hacer con herramientas de nltk como FreqDist()
+que te calcula la frecuencia de las palabras y Tree.treepositions().
+Me fije y todos los metodos dan los mismos resultados.
+
+Comiteo tambien el archivo "Tarea2.ipynb" que es un iPython Notebook.
+Para usarlo tienen que instalar iPython Notebook y levantan ese archivo.
+No se si lo quieren instalar, pero es una buena herramienta, te deja mezclar
+codigo con texto y graficas en el navegador.
+
+El otro archivo "Tarea+2.html" es como una snapshot del notebook. Ahi pueden 
+ver que te deja correr codigo, probar los metodos y contestar las preguntas.
+Asi como exporte el notebook a html, se puede exportar a pdf, por lo que 
+si les parece bien podriamos hacer el informe en esta plataforma.
+
+Saludos!
+
+

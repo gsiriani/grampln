@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 #
 #  Gramáticas Formales para el Lenguaje Natural
@@ -18,11 +18,9 @@
 #
 #
 
-
 import nltk
-import nltk.parse
-import ancora  # (Modulo para leer AnCora)
-
+import ancora  #(Modulo para leer AnCora)
+from __future__ import division
 
 # Parte 1 - Corpus
 ###################
@@ -32,9 +30,10 @@ class Corpus:
     Clase de funcionalidades sobre el corpus AnCora.
     """
 
-    def __init__(self, corpus_path='./ancora-2.0/'):
+    def __init__(self, corpus_path='./ancora/ancora-2.0/'):
         # Cargar corpus desde 'corpus_path'
         self.corpus =  ancora.AncoraCorpusReader(corpus_path)
+        self.lemas = self.corpus.stemmed_words()
 
     ## Parte 1.1
     # a.
@@ -42,7 +41,7 @@ class Corpus:
         """
         Retorna la cantidad de oraciones del corpus.
         """
-        return len(self.corpus.sents())
+        return  len(self.corpus.tagged_sents())
 
     # b.
     def oracion_mas_larga(self):
@@ -50,34 +49,15 @@ class Corpus:
         Retorna la oracion mas larga.
         (la primera si hay mas de una con el mismo largo)
         """
-        # Obtengo la lista de oraciones
-        oraciones = self.corpus.sents()
-        # Inicializo las variables con la primer oracion de la lista
-        mas_larga = oraciones[0]    # oracion mas larga
-        largo_max = len(oraciones[0])          # largo de la oracion mas larga
-        for o in oraciones:
-            if len(o) > largo_max:
-                # Actualizo la oracion mas larga
-                largo_max = len(o)
-                mas_larga = o
-        return mas_larga
+        word_count = lambda sentence: len(sentence)
+        return ' '.join(max(self.corpus.sents(), key=word_count))
 
     # c.
     def largo_promedio_oracion(self):
         """
         Retorna el largo de oracion promedio.
         """
-        # Obtengo la lista de oraciones
-        oraciones = self.corpus.sents()
-        # Obtengo cantidad de oraciones
-        cantidad_oraciones = len(self.corpus.sents())
-        # Obtengo suma del largo de las oraciones
-        suma_largos = 0
-        for o in oraciones:
-            suma_largos += len(o)
-        # Calculo promedio
-        promedio = suma_largos / cantidad_oraciones
-        return promedio
+        return  len(self.corpus.tagged_words())/len(self.corpus.tagged_sents())
 
     # d.
     def palabras_frecs(self):
@@ -85,18 +65,9 @@ class Corpus:
         Retorna un diccionario (dict) palabra-frecuencia de las palabras del corpus.
         (considerar las palabras en minúsculas)
         """
-        # Creo el diccionario
-        diccionario = {}
-        # Obtengo lista de palabras
-        palabras = self.corpus.tagged_words()
-        # Recorro la lista de palabras
-        for (p,t) in palabras:
-            p_min = p.lower()
-            if diccionario.has_key(p_min):
-                diccionario[p_min] = diccionario[p_min] + 1
-            else:
-                diccionario[p_min] = 1
-        return diccionario
+        
+        return dict(nltk.FreqDist([t[0].lower() for t in self.corpus.tagged_words()]))
+        
 
     # e.
     def palabras_frecs_cat(self):
@@ -105,68 +76,49 @@ class Corpus:
         Cada lista contiene la frecuencia por cada categoría de la palabra.
         (considerar las palabras en minúsculas)
         """
-        # Creo el diccionario
-        diccionario = {}
-        # Obtengo lista de palabras
-        palabras = self.corpus.tagged_words()
-        # Recorro la lista de palabras
-        for (p,t) in palabras:
-            p_min = p.lower()
-            if diccionario.has_key(p_min):
-                if diccionario[p_min].has_key(t):
-                    diccionario[p_min][t] += 1
-                else:
-                    diccionario[p_min][t] = 1
-            else:
-                diccionario[p_min] = {}
-                diccionario[p_min][t] = 1
-        return diccionario
-
-
+        from collections import defaultdict
         
+        dicc1 = dict(nltk.FreqDist([(w.lower(), c) for (w, c) in self.corpus.tagged_words()]))
+
+        dicc2 = defaultdict(list)
+        for k, v in dicc1.iteritems():
+            dicc2[k[0]].append((k[1], v))
+        
+        return dict(dicc2)
+    
+    def obtener_lema(self, palabra):
+        """
+        Retorna el lema de la palabra pasada por parametro.
+        El lema es el que se encuentra en el corpus AnCora.
+        """
+        return self.lemas[palabra].lower()
+    
+    
     ## Parte 1.2
-
-    # Funcion auxiliar para contar los nodos de un arbol
-    def cantidad_nodos(self, t):
-        cant = 0
-        # Sumo todos los subarboles (nodos intermedios)
-        for subtree in t.subtrees():
-            cant += 1
-        # Sumo todas las hojas
-        for hoja in t.leaves():
-            cant += 1
-        return cant
-
     # a
     def arbol_min_nodos(self):
         """
         Retorna el árbol del corpus con la mínima cantidad de nodos.
         (el primero si hay mas de uno con la misma cantidad)
         """
-        arboles = self.corpus.parsed_sents()
-        min_t = arboles[0]
-        min_nodos = self.cantidad_nodos(arboles[0])
-        for t in arboles:
-            c = self.cantidad_nodos(t)
-            if c < min_nodos:
-                min_nodos = c
-                min_t = t
-        return min_t
+        trees = self.corpus.parsed_sents()
+
+        helper = [(index, len(t.treepositions())) for index, t in enumerate(trees)]
+        helper.sort(key=lambda x: x[1])
+        
+        return trees[helper[0][0]]
 
     def arbol_max_nodos(self):
         """
         Retorna el árbol del corpus con la máxima cantidad de nodos.
         (el primero si hay mas de uno con la misma cantidad)
         """
-        arboles = self.corpus.parsed_sents()
-        max_t = arboles[0]
-        max_nodos = self.cantidad_nodos(arboles[0])
-        for t in arboles:
-            c = self.cantidad_nodos(t)
-            if c > max_nodos:
-                max_nodos = c
-                max_t = t
-        return max_t
+        trees= self.corpus.parsed_sents()
+        
+        helper = [(index, len(t.treepositions())) for index, t in enumerate(trees)]
+        helper.sort(key=lambda x: x[1])
+        
+        return trees[helper[-1][0]]
 
 
     # b
@@ -174,17 +126,10 @@ class Corpus:
         """
         Retorna todos los árboles que contengan alguna palabra con lema 'lema'.
         """
-        arboles = self.corpus.parsed_sents()
-        res = []
-        for subtree in arboles:
-            for aux in subtree.subtrees(filter = lambda t: t.label()==lema):
-                res.append(subtree)
-                break
-        return res
+        
+        return [t for t in self.corpus.parsed_sents() if lema in map(lambda x: self.obtener_lema(x.lower()), t.leaves())]
 
    
-
-
 # Parte 2 - PCFG y Parsing
 ###########################
 
@@ -210,30 +155,38 @@ class PCFG:
         """
         Induce PCFG del corpus.
         """
-		        
-        productions = []
-        for tree in corpus.corpus.parsed_sents():
-             productions += tree.productions()
-
-        S = nltk.Nonterminal('sentence')
         
+        productions = []
+        S = nltk.Nonterminal('sentence')
+        for tree in corpus.corpus.parsed_sents():
+            # Trasnformamos los arboles para obtener las reglas en Forma Normal de Chomsky.
+            #tree.collapse_unary(collapsePOS = True, collapseRoot = True)
+            #tree.chomsky_normal_form(horzMarkov = 2)
+            
+            # Transformo todas las hojas del arbol a minuscula
+            for t in tree.treepositions('leaves'):
+                tree[t] = tree[t].lower()
+            
+            productions += tree.productions()
+
         return nltk.induce_pcfg(S, productions)
-
-
 
     # a
     def reglas_no_lexicas(self):
         """
         Retornas las reglas que no son léxicas.
         """
-        return [p for p in self.grammar.productions() if p.is_nonlexical()]
+        return [regla for regla in self.grammar.productions() if regla.is_nonlexical()]
 
     # b 
     def categorias_lexicas(self):
         """
         Retorna las categorías léxicas (se infieren de las reglas léxicas).
         """
-        return {c.lhs() for c in self.grammar.productions() if c.is_lexical()}
+        # La lista devuelta no tiene elementos repetidos.
+        set_categorias = set([regla.rhs()[0] for regla in self.grammar.productions() if regla.is_lexical()])
+        lista_categorias = list(set_categorias)
+        return lista_categorias
         
 
     # c
@@ -241,173 +194,166 @@ class PCFG:
         """
         Retorna las reglas léxicas de categoría 'c'
         """
-        return [p for p in self.grammar.productions() if p.is_lexical() and p.lhs().symbol() == c]
+        # Debe recibir un string, se realiza la conversion a simbolo no-terminal dentro de la funcion.
+        return [regla for regla in self.grammar.productions() if regla.is_lexical() and regla.lhs() == nltk.Nonterminal(c)]
 
     ## Parte 2.2 (parser)
     def _generate_parser(self):
         """
         Generate Viterbi parser from grammar.
         """
-        return nltk.parse.ViterbiParser(self.grammar)
+        return nltk.ViterbiParser(self.grammar)
 
     ## Parte 2.3 (sentences)
     def parse(self, sentence):
         """
         Parse sentence and return ProbabilisticTree.
         """
-	
-        return self.parser.parse_one(sentence.split());
-
+        # TODO: Tratar el caso cuando hay palabras en la oracion que no esten en la gramatica.
+        
+        tokens = [w.lower() for w in nltk.word_tokenize(sentence)]
+        
+        return self.parser.parse_one(tokens)
 
 
 # Parte 3 - PCFG con palabras desconocidas
 ##########################################
 
+
 class PCFG_UNK(PCFG):
-   #"""
+    """
     Clase de funcionalidades sobre PCFG de AnCora con UNK words.
-   #"""
+    """
 
-   #sents = [   u'El domingo próximo se presenta la nueva temporada de ópera .', #a (2.3.c)
-               #u'Pedro y Juan jugarán el campeonato de fútbol .', #b 
-           #]
+    sents = [   u'El domingo próximo se presenta la nueva temporada de ópera .', #a (2.3.c)
+                u'Pedro y Juan jugarán el campeonato de fútbol .', #b 
+            ]
 
 
-   ## Parte 3.1
+    # Parte 3.1
     def _induce_pcfg(self, corpus):
-       #"""
+        """
         Induce PCFG grammar del corpus (treebank) considerando palabras UNK.
-       #"""
-		  #unk_words = {k for k,v in self.wordfrecs.iteritems() if v == 1}
+        """
         
-       #productions = []
+        unk_words = {k for k,v in self.wordfrecs.iteritems() if v == 1}
+        
+        productions = []
         for tree in corpus.corpus.parsed_sents():
-            #productions += tree.productions()
+            # Trasnformamos los arboles para obtener las reglas en Forma Normal de Chomsky.
+            #tree.collapse_unary(collapsePOS = True, collapseRoot = True)
+            #tree.chomsky_normal_form(horzMarkov = 2)
+            
+            # Transformo todas las hojas a minusculas.
+            for t in tree.treepositions('leaves'):
+                tree[t] = tree[t].lower()
+            
+            productions += tree.productions()
 
-       #new_productions = []
+        new_productions = []
         for pr in productions:
-           #if len(pr.rhs()) == 1 and pr.rhs()[0] in unk_words:
-               #new_pr = nltk.grammar.Production(pr.lhs(), ['UNK'])
+            if len(pr.rhs()) == 1 and pr.rhs()[0] in unk_words:
+                new_pr = nltk.grammar.Production(pr.lhs(), ['UNK'])
                 new_productions.append(new_pr)
-           #else:
-               #new_productions.append(pr)
-
-
-       #
+            else:
+                new_productions.append(pr)
+        
         S = nltk.Nonterminal('sentence')
-       #
+        
         return nltk.induce_pcfg(S, new_productions)
 
 
+    # Parte 3.2 (y 3.3)
 
-   ## Parte 3.2 (y 3.3)
-
-   #def parse(self, sentence):
-       #"""
+    def parse(self, sentence):
+        """
         Retorna el análisis sintáctico de la oración contemplando palabras UNK.
-       #"""
+        """
         tokens = [w.lower() for w in nltk.word_tokenize(sentence)]
-       #
-        all_words = {k for k,v in self.wordfrecs.iteritems()}
-       #
-        unk_words = {k for k,v in self.wordfrecs.iteritems() if v == 1}
-       #
-        unk_tokens = [w if w not in unk_words and w in all_words else "UNK" for w in tokens]
-       #
-        # Si se hace esto, las palabras con frecuencia 1 no son reconocidas y el parser tira error, ej: juan.
-       ##unk_tokens = [w if w in all_words else "UNK" for w in tokens]
         
-       #return self.parser.parse_one(unk_tokens)
-
-'''
-Parte 3.3
-pcfg_unk = PCFG_UNK()
-
-pcfg_unk.parse(pcfg_unk.sents[0])
-
-#En este caso, la unica palabra de la oracion que no se encuentra en la gramatica es "opera".
- Por lo que la palabra se cambia por "UNK" y el parser la identifica como un nombre comun.
-#En este caso esta tecnica (cambiar palabras desconocidas por "UNK") produce un buen resultado.
-'''
-
-'''
-Parte 3.3b
-pcfg_unk.parse(pcfg_unk.sents[1])
-
-#En este caso, existen cuatro palabras que no se encuentran en el corpus y por ende son cambiadas por "UNK".
- Dichas palabras son: pedro, juan, jugaran y campeonato.
-#El resultado que obtiene el parser no es bueno en este caso, no ayuda el hecho de que la mitad de la oracion
- este compuesta por palabras desconocidas.
-'''
-
-'''
-Parte 3.4
-
-El uso de una tecnica como la utilizada en las partes 3.1 y 3.2 permite que nuestro parser sea capaz de procesar 
-oraciones que tengan palabras que no se encuentren en el corpus utilizado.
-Poder analizar oraciones con palabras desconocidas es una buena propiedad para un parser, ya que independientemente
-del tamanio del corpus utilizado para deducir las reglas de la gramatica, es dificil que dicho corpus posea todas las
-palabras del vocabulario.
-
-Como vimos en las oraciones de ejemplo analizadas, esta tecnica produce resultados de variada calidad. A medida que 
-que aumente la proporcion de palabras desconocidas en una oracion, resultara mas dificil para el parser realizar un
-analisis de calidad.
-
-Otro problema de esta tecnica es que al agrupar todas las reglas de palabras poco frecuentes como "UNK", corremos el
-riesgo de clasificar erroneamente algunas palabras. Esto sucede por ejemplo con la palabra "juan", la cual en el
-analisis obtenido es clasificada como un verbo, cuando en realidad es un nombre propio.
-
-Un enfoque alternativo podria ser el de analizar las palabras desconocidas de la oracion. Por ejemplo los nombres
-propio comienzan con mayuscula, como Pedro y Juan (con la salvedad de que en este caso Pedro se encuentra al comienzo
-de la oracion, donde resulta ambiguo su analisis), jugaran es una variacion del verbo jugar, el cual se encuentra en el 
-corpus y por lo tanto podria ser etiquetado como verbo.
-Aplicar este enfoque tiene una parte negativa, es necesario, una vez determinadas las categorias de las palabras
-desconocidas encontradas en la oracion a analizar, hay que agregar dichas reglas a la gramatica y hay que volver a 
-inferir el parser (actividades que son computacionalmente costosas).
-'''
-
+        all_words = {k for k,v in self.wordfrecs.iteritems()}
+        
+        unk_words = {k for k,v in self.wordfrecs.iteritems() if v == 1}
+        
+        unk_tokens = [w if w not in unk_words and w in all_words else "UNK" for w in tokens]
+        
+        return self.parser.parse_one(unk_tokens)
 
 # Parte 4 - PCFG lexicalizada
 ##############################
 
-# 1
+# 4.1
+
+from nltk.stem.snowball import SpanishStemmer
 
 class PCFG_LEX(PCFG):
-   #"""
+    """
     PCFG de AnCora con lexicalización en primer nivel.
-   #"""
+    """
 
-   #sents = [   u'El juez vino que avión .', #
-           #]                
+    sents = [   u'El juez vino que avión .', #
+            ]                
 
-   #def _induce_pcfg(self, corpus):
-       #"""
+    def _induce_pcfg(self, corpus):
+        """
         Induce PCFG del corpus considerando lexicalización en primer nivel.
-       #"""
-        return # ...
+        """
+        
+        #stemmer = SpanishStemmer()
+        
+        S = nltk.Nonterminal('sentence')
+        
+        arboles = []
+        for tree in corpus.corpus.parsed_sents():
+            # Trasnformamos los arboles para obtener las reglas en Forma Normal de Chomsky.
+            #tree.collapse_unary(collapsePOS = True, collapseRoot = True)
+            #tree.chomsky_normal_form(horzMarkov = 2)
+            arboles.append(tree.copy())      
+    
+        # Hago parent annotation del nivel superior a las hojas utilizando el lema de la hoja.
+        productions = []
+        for arbol in arboles:
+            for t in arbol.treepositions('leaves'):
+                arbol[t] = arbol[t].lower()
+                t_p = tuple(x[1] for x in enumerate(t) if x[0] != len(t)-1)
+                arbol[t_p].set_label(arbol[t_p].label() + "#" + corpus.obtener_lema(arbol[t]))
+            productions.extend(arbol.productions())
 
 
+        return nltk.induce_pcfg(S, productions)
 
-
-
-# 2
+# 4.2
 
 class PCFG_LEX_VERB(PCFG):
-   #"""
+    """
     PCFG de AnCora con lexicalización en primer nivel y grupos verbales (grup.verb).
-   #"""
+    """
 
-   #sents = [   u'El juez manifestó su apoyo al gobierno .', # i
-               #u'El juez opinó su apoyo al gobierno .', # ii
+    sents = [   u'El juez manifestó su apoyo al gobierno .', # i
+                u'El juez opinó su apoyo al gobierno .', # ii
 
-               #u'El juez manifestó que renunciará .', # 4.2.c
-           #]                
+                u'El juez manifestó que renunciará .', # 4.2.c
+            ]                
 
-   #def _induce_pcfg(self, corpus):
-       #"""
+    def _induce_pcfg(self, corpus):
+        """
         Induce PCFG del corpus considerando lexicalización en primer nivel y grupos verbales.
-       #"""
-        return # ...
+        """
+        S = nltk.Nonterminal('sentence')
+        
+        # Hago parent annotation del nivel superior a las hojas utilizando el lema de la hoja.
+        productions = []
+        for arbol in corpus.corpus.parsed_sents():
+            for t in arbol.treepositions('leaves'):
+                arbol[t] = arbol[t].lower()
+                t_p = tuple(x[1] for x in enumerate(t) if x[0] != len(t)-1)
+                arbol[t_p].set_label(arbol[t_p].label() + "#" + corpus.obtener_lema(arbol[t]))
+                verbo = corpus.obtener_lema(arbol[t])
+                if verbo.endswith(("ar", "er", "ir",)) and "_" not in verbo:
+                    t_p2 = tuple(x[1] for x in enumerate(t_p) if x[0] != len(t_p)-1)
+                    if arbol[t_p2].label() == "grup.verb":
+                        arbol[t_p2].set_label(arbol[t_p2].label() + "#" + verbo)
+            productions.extend(arbol.productions())
 
-
+        return nltk.induce_pcfg(S, productions)
 
