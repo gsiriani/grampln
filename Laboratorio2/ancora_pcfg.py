@@ -18,9 +18,9 @@
 #
 #
 
+from __future__ import division
 import nltk
 import ancora  #(Modulo para leer AnCora)
-from __future__ import division
 
 # Parte 1 - Corpus
 ###################
@@ -184,7 +184,7 @@ class PCFG:
         Retorna las categorías léxicas (se infieren de las reglas léxicas).
         """
         # La lista devuelta no tiene elementos repetidos.
-        set_categorias = set([regla.rhs()[0] for regla in self.grammar.productions() if regla.is_lexical()])
+        set_categorias = set([regla.lhs() for regla in self.grammar.productions() if regla.is_lexical()])
         lista_categorias = list(set_categorias)
         return lista_categorias
         
@@ -211,7 +211,7 @@ class PCFG:
         """
         # TODO: Tratar el caso cuando hay palabras en la oracion que no esten en la gramatica.
         
-        tokens = [w.lower() for w in nltk.word_tokenize(sentence)]
+        tokens = [w.lower() for w in sentence.split()]
         
         return self.parser.parse_one(tokens)
 
@@ -269,7 +269,7 @@ class PCFG_UNK(PCFG):
         """
         Retorna el análisis sintáctico de la oración contemplando palabras UNK.
         """
-        tokens = [w.lower() for w in nltk.word_tokenize(sentence)]
+        tokens = [w.lower() for w in sentence.split()]
         
         all_words = {k for k,v in self.wordfrecs.iteritems()}
         
