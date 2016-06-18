@@ -1,0 +1,283 @@
+-- Sustantivos
+-- -----------
+<docente, 
+	[word
+	HEAD [noun
+		AGR [ agr-cat-pg 
+			NUM sg [1]
+			GEN ma [2]] ]
+	VAL [ SPR < [HEAD [ det
+						AGR [ NUM [1]
+							GEN [2]]]] >
+		COMPS <PP> ]] >
+
+<docentes, 
+	[word
+	HEAD [noun
+		AGR [ agr-cat-pg 
+			NUM pl [1]
+			GEN ma [2]] ]
+	VAL [ SPR < [HEAD [ det
+						AGR [ NUM [1]
+							GEN [2]]]] >
+		COMPS <PP> ]] >
+
+<entrega,
+	[word
+	HEAD [noun
+		AGR [ agr-cat-pg 
+			NUM sg [1]
+			GEN ma [2]] ]
+	VAL [ SPR < [HEAD [ det
+						AGR [ NUM [1]
+							GEN [2]]]] > 
+		COMPS <PP,PP,PP> ]] >
+
+<estudiantes, 
+	[word
+	HEAD [noun
+		AGR [ agr-cat-pg 
+			NUM pl [1]
+			GEN ma [2]] ]
+	VAL [ SPR < [HEAD [ det
+						AGR [ NUM [1]
+							GEN [2]]]] >
+		COMPS <PP> ]] >
+
+<Computacion, 
+	[word
+	HEAD [noun
+		AGR [ agr-cat-pg 
+			NUM sg [1]
+			GEN fe [2]] ]
+	VAL [ SPR < [HEAD [ det
+						AGR [ NUM [1]
+							GEN [2]]]] >
+		COMPS <> ]] >
+
+<Programacion, 
+	[word
+	HEAD [noun
+		AGR [ agr-cat-pg 
+			NUM sg [1]
+			GEN fe [2]] ]
+	VAL [ SPR < [HEAD [ det
+						AGR [ NUM [1]
+							GEN [2]]]] >
+		COMPS <> ]] >
+
+<manifestacion, 
+	[word
+	HEAD [noun
+		AGR [ agr-cat-pg 
+			NUM sg [1]
+			GEN fe [2]] ]
+	VAL [ SPR < [HEAD [ det
+						AGR [ NUM [1]
+							GEN [2]]]] >
+		COMPS <> ]] >
+
+<libros, 
+	[word
+	HEAD [noun
+		AGR [ agr-cat-pg 
+			NUM pl [1]
+			GEN ma [2]] ]
+	VAL [ SPR < [HEAD [ det
+						AGR [ NUM [1]
+							GEN [2]]]] >
+		COMPS <PP> ]] >
+
+<facultad, 
+	[word
+	HEAD [noun
+		AGR [ agr-cat-pg 
+			NUM sg [1]
+			GEN fe [2]] ]
+	VAL [ SPR < [HEAD [ det
+						AGR [ NUM [1]
+							GEN [2]]]] >
+		COMPS <> ]] >
+
+<seis, 
+	[word
+	HEAD [noun
+		AGR [ agr-cat-pg 
+			NUM pl [1]
+			GEN fe [2]] ]
+	VAL [ SPR < [HEAD [ det
+						AGR [ NUM [1]
+							GEN [2]]]] >
+		COMPS <PP> ]] >
+
+<tarde, 
+	[word
+	HEAD [noun
+		AGR [ agr-cat-pg 
+			NUM sg [1]
+			GEN fe [2]] ]
+	VAL [ SPR < [HEAD [ det
+						AGR [ NUM [1]
+							GEN [2]]]] >
+		COMPS <> ]] >
+
+<semana, 
+	[word
+	HEAD [noun
+		AGR [ agr-cat-pg 
+			NUM sg [1]
+			GEN fe [2]] ]
+	VAL [ SPR < [HEAD [ det
+						AGR [ NUM [1]
+							GEN [2]]]] >
+		COMPS <NP> ]] >
+
+
+
+-- Verbos
+-- --------
+
+<entregara, 
+	[word 
+	HEAD [verb
+		AGR [agr-cat-p
+			NUM sg [1] ] ] 
+	VAL [ SPR < [HEAD [ noun
+						AGR [NUM [1]]]] >
+		COMPS <NP, PP>]] >
+
+<entregaran, 
+	[word 
+	HEAD [verb
+		AGR [agr-cat-p
+			NUM pl [1] ] ] 
+	VAL [ SPR < [HEAD [ noun
+						AGR [NUM [1]]]] >
+		COMPS <NP, PP>]] >
+
+<cancelaron, 
+	[word 
+	HEAD [verb
+		AGR [agr-cat-p
+			NUM pl [1] ] ] 
+	VAL [ SPR < [HEAD [ noun
+						AGR [NUM [1]]]] >
+		COMPS <NP, PP>]] >
+
+<postergaron, 
+	[word 
+	HEAD [verb
+		AGR [agr-cat-p
+			NUM pl [1] ] ] 
+	VAL [ SPR < [HEAD [ noun
+						AGR [NUM [1]]]] >
+		COMPS <NP, PP>]] >
+
+<volvieron, 
+	[word 
+	HEAD [verb
+		AGR [agr-cat-p
+			NUM pl [1] ] ] 
+	VAL [ SPR < [HEAD [ noun
+						AGR [NUM [1]]]] >
+		COMPS <PP, PP>]] >
+
+
+-- Determinantes
+-- --------------
+<el,
+	[word
+	HEAD [det
+		AGR [agr-cat-g
+			NUM sg
+			GEN ma ] ] ] >
+
+<los,
+	[word
+	HEAD [det
+		AGR [agr-cat-g
+			NUM pl
+			GEN ma ] ] ] >
+
+<la,
+	[word
+	HEAD [det
+		AGR [agr-cat-g
+			NUM sg
+			GEN fe ] ] ] >
+
+<las,
+	[word
+	HEAD [det
+		AGR [agr-cat-g
+			NUM pl
+			GEN fe ] ] ] >
+
+
+-- Preposiciones
+-- --------------
+
+<de,
+	[word 
+	HEAD [ prep ]
+	VAL [ COMPS <NP> ] ]>
+
+<a,
+	[word 
+	HEAD [ prep ]
+	VAL [ COMPS <NP> ] ]>
+
+<para,
+	[word 
+	HEAD [ prep ]
+	VAL [ COMPS <NP> ] ]>
+
+<desde,
+	[word 
+	HEAD [ prep ]
+	VAL [ COMPS <NP> ] ]>
+
+<hasta,
+	[word 
+	HEAD [ prep ]
+	VAL [ COMPS <NP> ] ]>
+
+
+-- Adverbios
+-- -----------
+
+<proximamente, 
+	[word
+	HEAD [val-cat] 
+	VAL [ MOD <verb> ]>
+
+<tarde, 
+	[word
+	HEAD [val-cat] 
+	VAL [ MOD <verb> ]>
+
+
+-- Adjetivos
+-- -----------
+
+<programada, 
+	[word
+	HEAD [val-cat
+		AGR [NUM sg
+			GEN fe]] 
+	VAL [ MOD <noun> ]]>
+
+<programado, 
+	[word
+	HEAD [val-cat
+		AGR [NUM sg
+			GEN fe]] 
+	VAL [ MOD <noun> ]]>
+			
+<proxima, 
+	[word
+	HEAD [val-cat
+		AGR [NUM sg
+			GEN fe]] 
+	VAL [ MOD <noun> ]]>
+
