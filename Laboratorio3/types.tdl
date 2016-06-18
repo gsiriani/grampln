@@ -15,7 +15,8 @@ phrase := sign &
 [ ARGS *list* ].
 
 word := sign &
-[ ORTH string ].
+[ ORTH string,
+  MOD *list* ].
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 
