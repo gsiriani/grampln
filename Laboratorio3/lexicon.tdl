@@ -148,31 +148,31 @@ de := word &
 [ ORTH "de",
   HEAD prep,
   SPR < >,
-  COMPS < phrase & [HEAD noun > ].
+  COMPS < phrase & [HEAD noun] > ].
 
 a := word &
 [ ORTH "a",
   HEAD prep,
   SPR < >,
-  COMPS < phrase & [HEAD noun > ].
+  COMPS < phrase & [HEAD noun] > ].
 
 para := word &
 [ ORTH "para",
   HEAD prep,
   SPR < >,
-  COMPS < phrase & [HEAD noun > ].
+  COMPS < phrase & [HEAD noun] > ].
 
 desde := word &
 [ ORTH "desde",
   HEAD prep,
   SPR < >,
-  COMPS < phrase & [HEAD noun > ].
+  COMPS < phrase & [HEAD noun] > ].
 
 hasta := word &
 [ ORTH "hasta",
   HEAD prep,
   SPR < >,
-  COMPS < phrase & [HEAD noun > ].
+  COMPS < phrase & [HEAD noun] > ].
 
 ;; Adverbios
 ;; ---------
