@@ -141,5 +141,77 @@ chased := word &
   SPR < [HEAD noun] >,
   COMPS < phrase & [HEAD noun] > ].
 
+;; Preposiciones
+;; -------------
+
+de := word &
+[ ORTH "de",
+  HEAD prep,
+  SPR < >,
+  COMPS < phrase & [HEAD noun > ].
+
+a := word &
+[ ORTH "a",
+  HEAD prep,
+  SPR < >,
+  COMPS < phrase & [HEAD noun > ].
+
+para := word &
+[ ORTH "para",
+  HEAD prep,
+  SPR < >,
+  COMPS < phrase & [HEAD noun > ].
+
+desde := word &
+[ ORTH "desde",
+  HEAD prep,
+  SPR < >,
+  COMPS < phrase & [HEAD noun > ].
+
+hasta := word &
+[ ORTH "hasta",
+  HEAD prep,
+  SPR < >,
+  COMPS < phrase & [HEAD noun > ].
+
+;; Adverbios
+;; ---------
+
+proximamente := word &
+[ ORTH "proximamente",
+  HEAD adv,
+  SPR < >,
+  COMPS < >, 
+  MOD < [HEAD verb] > ].
+
+tarde := word &
+[ ORTH "tarde",
+  HEAD adv,
+  SPR < >,
+  COMPS < >, 
+  MOD < [HEAD verb] > ].
 
 
+;; Adjetivos
+;; ---------
+
+programada := word &
+[ ORTH "programada",
+  HEAD adj,
+  SPR < >,
+  COMPS < >, 
+  MOD < [HEAD noun] > ].
+
+programado := word &
+[ ORTH "programado",
+  HEAD adj,
+  SPR < >,
+  COMPS < >, 
+  MOD < [HEAD noun] > ].
+
+proxima := word &
+[ ORTH "proxima",
+  HEAD adj,
+  SPR < >,
+  COMPS < >, 
+  MOD < [HEAD noun] > ].
