@@ -1,57 +1,60 @@
 from ancora_pcfg import *
+import sys
+import codecs
+sys.stdout=codecs.getwriter('utf-8')(sys.stdout)
 
-#print '****************'
-#print 'PARTE 1'
-#print '****************'
-#
-#c = Corpus()
-#
-#print 'cant_oraciones:'
-#print c.cant_oraciones()
-#
-#print '\nOracion mas larga:'
-#print c.oracion_mas_larga()
-#
-#print '\nLargo promedio oracion:'
-#print c.largo_promedio_oracion()
-#
-#print '\nFrecuencia de palabras:'
-#print c.palabras_frecs()
-#
-#print '\nFrecuencia de palabras por categoria:'
-#print c.palabras_frecs_cat()
-#
-#print '\nArbol con minimos nodos:'
-#print c.arbol_min_nodos()
-#
-#print '\nArbol con maximos nodos:'
-#print c.arbol_max_nodos()
-#
-#print '\nArboles con lema:'
-#print c.arboles_con_lema(lema = 'ser')
-#
+print '****************'
+print 'PARTE 1'
+print '****************'
 
-#print '****************'
-#print 'PARTE 2'
-#print '****************'
-#
+c = Corpus()
+
+print 'cant_oraciones:'
+print c.cant_oraciones()
+
+print '\nOracion mas larga:'
+print c.oracion_mas_larga()
+
+print '\nLargo promedio oracion:'
+print c.largo_promedio_oracion()
+
+print '\nFrecuencia de palabras:'
+print c.palabras_frecs()
+
+print '\nFrecuencia de palabras por categoria:'
+print c.palabras_frecs_cat()
+
+print '\nArbol con minimos nodos:'
+print c.arbol_min_nodos()
+
+print '\nArbol con maximos nodos:'
+print c.arbol_max_nodos()
+
+print '\nArboles con lema:'
+print c.arboles_con_lema(lema = 'ser')
+
+
+print '****************'
+print 'PARTE 2'
+print '****************'
+
 p = PCFG()
-#
-#print '\nReglas no lexicas:'
-#print p.reglas_no_lexicas()
-#
-#print '\nCategorias lexicas:'
-#print p.categorias_lexicas()
-#
-#print '\nReglas lexicas:'
-#print p.reglas_lexicas('px3mp000')
-#
-#print '\nAnalisis de sentencias:'
-#for str in p.sents:
-#	print str + ':\n'
-#	print p.parse(str)
-#	
-#	
+
+print '\nReglas no lexicas:'
+print p.reglas_no_lexicas()
+
+print '\nCategorias lexicas:'
+print p.categorias_lexicas()
+
+print '\nReglas lexicas:'
+print p.reglas_lexicas('px3mp000')
+
+print '\nAnalisis de sentencias:'
+for str in p.sents:
+	print str + ':\n'
+	print p.parse(str)
+	
+	
 print '****************'
 print 'PARTE 3'
 print '****************'

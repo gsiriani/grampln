@@ -1,0 +1,7 @@
+****************
+PARTE 1
+****************
+cant_oraciones:
+3492
+
+Oracion mas larga:
