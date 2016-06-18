@@ -1,0 +1,145 @@
+;; Determinantes
+;; ------------
+
+el := word &
+[ ORTH "el",
+  HEAD det,
+  SPR < >,
+  COMPS < > ].
+
+la := word &
+[ ORTH "la",
+  HEAD det,
+  SPR < >,
+  COMPS < > ].
+
+los := word &
+[ ORTH "los",
+  HEAD det,
+  SPR < >,
+  COMPS < > ].
+
+las := word &
+[ ORTH "las",
+  HEAD det,
+  SPR < >,
+  COMPS < > ].
+
+
+;; Sustantivos
+;; -----------
+
+docente := word &
+[ ORTH "docente",
+  HEAD noun,
+  SPR < [HEAD det] >,
+  COMPS < > ].
+
+docentes := word &
+[ ORTH "docentes",
+  HEAD noun,
+  SPR < [HEAD det] >,
+  COMPS < > ].
+
+entrega := word &
+[ ORTH "entrega",
+  HEAD noun,
+  SPR < [HEAD det] >,
+  COMPS < > ].
+
+estudiantes := word &
+[ ORTH "estudiantes",
+  HEAD noun,
+  SPR < [HEAD det] >,
+  COMPS < > ].
+
+Computacion := word &
+[ ORTH "Computacion",
+  HEAD noun,
+  SPR < [HEAD det] >,
+  COMPS < > ].
+
+Programacion := word &
+[ ORTH "Programacion",
+  HEAD noun,
+  SPR < [HEAD det] >,
+  COMPS < > ].
+
+manifestacion := word &
+[ ORTH "manifestacion",
+  HEAD noun,
+  SPR < [HEAD det] >,
+  COMPS < > ].
+
+libros := word &
+[ ORTH "libros",
+  HEAD noun,
+  SPR < [HEAD det] >,
+  COMPS < > ].
+
+facultad := word &
+[ ORTH "facultad",
+  HEAD noun,
+  SPR < [HEAD det] >,
+  COMPS < > ].
+
+seis := word &
+[ ORTH "seis",
+  HEAD noun,
+  SPR < [HEAD det] >,
+  COMPS < > ].
+
+tarde := word &
+[ ORTH "tarde",
+  HEAD noun,
+  SPR < [HEAD det] >,
+  COMPS < > ].
+
+semana := word &
+[ ORTH "semana",
+  HEAD noun,
+  SPR < [HEAD det] >,
+  COMPS < > ].
+
+
+;; Verbos
+;; --------
+
+entregara := word &
+[ ORTH "entregara",
+  HEAD verb,
+  SPR < [HEAD noun] >,
+  COMPS < > ].
+
+entregaran := word &
+[ ORTH "entregaran",
+  HEAD verb,
+  SPR < [HEAD noun] >,
+  COMPS < > ].
+
+cancelaron := word &
+[ ORTH "cancelaron",
+  HEAD verb,
+  SPR < [HEAD noun] >,
+  COMPS < > ].
+
+postergaron := word &
+[ ORTH "postergaron",
+  HEAD verb,
+  SPR < [HEAD noun] >,
+  COMPS < > ].
+
+volvieron := word &
+[ ORTH "volvieron",
+  HEAD verb,
+  SPR < [HEAD noun] >,
+  COMPS < > ].
+
+chased := word &
+[ ORTH "chased",
+  HEAD verb,
+  SPR < [HEAD noun] >,
+  COMPS < phrase & [HEAD noun] > ].
+
+
+
