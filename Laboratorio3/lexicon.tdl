@@ -88,7 +88,7 @@ libros := word &
 [ ORTH "libros",
   HEAD noun,
   SPR < >,
-  COMPS < [HEAD prep] > ].
+  COMPS < phrase & [HEAD prep] > ].
 
 facultad := word &
 [ ORTH "facultad",
@@ -100,7 +100,7 @@ seis := word &
 [ ORTH "seis",
   HEAD noun,
   SPR < [HEAD det] >,
-  COMPS < > ].
+  COMPS < phrase & [HEAD prep] > ].
 
 tarde := word &
 [ ORTH "tarde",
@@ -196,7 +196,7 @@ proximamente := word &
   SPR < >,
   COMPS < > ].
 
-tarde := word &
+tarde_adv := word &
 [ ORTH "tarde",
   HEAD adv,
   SPR < >,
