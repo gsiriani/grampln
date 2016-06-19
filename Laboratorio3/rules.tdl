@@ -61,11 +61,16 @@ head-modifier-rule_2 := phrase &
          loc_adv & 
          [HEAD [MOD < #hdtr > ]] > ].
 
-loc-adv-rule := loc_adv &
-[ HEAD #head,
-  SPR < >,
+
+loc-adv-rule-0 := loc_adv &
+[ SPR < >,
+  COMPS < >,
+  ARGS < word_adv & [ LOC < > ] >
+].
+
+loc-adv-rule-1 := loc_adv &
+[ SPR < >,
   COMPS < >,
   ARGS < word & #x,
-         word_adv & [ HEAD #head,
-	 LOC < #x > ] >
+         word_adv & [ LOC < #x > ] >
  ].

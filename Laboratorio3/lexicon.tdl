@@ -135,8 +135,8 @@ hasta := word_prep & [ ORTH "hasta" ].
 ;; ---------
 
 proximamente := word_adv & [ ORTH "próximamente" ].
-
-tarde_adv := word_adv & [ ORTH "tarde",  LOC < [HEAD prep, ORTH "de" ] >].
+tarde_adv := word_adv & [ ORTH "tarde" ].
+tarde_adv_loc := word_adv & [ ORTH "tarde",  LOC < [HEAD prep, ORTH "de" ] >].
 
 ;; Adjetivos
 ;; ---------

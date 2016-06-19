@@ -7,7 +7,8 @@ pos := *top* & [ MOD *list* ].
 
 verb := pos & [ MOD <> ].
 det := pos & [ MOD <> ].
-adv := pos & [ MOD < [ HEAD verb ] > ].
+adv := pos & [ MOD <> ].
+l_adv := pos & [ MOD < [ HEAD verb ] > ].
 adj := pos & [ MOD < [ HEAD noun ] > ].
 
 noun := comp.
@@ -15,10 +16,9 @@ prep := comp.
 
 comp := pos & [ MOD <> ].
 
-phrase := sign & [  ARGS *list* ].
+phrase := sign & [ ARGS *list* ].
 
-word := sign &
-[ ORTH string, LOC *list*  ].
+word := sign & [ ORTH string, LOC *list* ].
 
 word_verb_intransitive := word & 
 	[ HEAD verb,
@@ -47,7 +47,7 @@ word_adv := word & [ HEAD adv,
 	      SPR < >,
 	      COMPS < > ].
 
-loc_adv := phrase & [ HEAD adv ].
+loc_adv := phrase & [ HEAD l_adv ].
 
 word_adj := word & [ HEAD adj,
   	      SPR < >,
