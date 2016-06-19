@@ -6,6 +6,8 @@ sign := *top* &
 pos := *top* & [ MOD *list* ].
 noun := pos & [ MOD <> ].
 verb := pos & [ MOD <> ].
+va := phrase & [ COMPS < [ HEAD verb ], [ HEAD adv ] >
+		].
 det := pos & [ MOD <> ].
 prep := pos & [ MOD <> ].
 adv := pos & [ MOD < [ HEAD verb ] > ].

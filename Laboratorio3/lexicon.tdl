@@ -115,7 +115,7 @@ entregaran := word &
 [ ORTH "entregarán",
   HEAD verb,
   SPR < [HEAD noun] >,
-  COMPS < phrase & [HEAD adv], phrase & [HEAD noun], phrase & [HEAD prep] > ].
+  COMPS < phrase & [HEAD noun], phrase & [HEAD prep] > ].
 
 cancelaron := word &
 [ ORTH "cancelaron",
