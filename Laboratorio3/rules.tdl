@@ -14,7 +14,7 @@ head-complement-rule-1 := phrase &
   SPR #a, 
   COMPS < >,   
 
-  ARGS < word & 
+  ARGS < sign & 
          [ HEAD #0,
            SPR #a, 
            COMPS < #1 & [ SPR < > ] > ],  #1 >  ].
@@ -25,7 +25,7 @@ head-complement-rule-2 := phrase &
   SPR #a, 
   COMPS < >,   
 
-  ARGS < word & 
+  ARGS < sign & 
          [ HEAD #0,
            SPR #a, 
            COMPS < #1, #2 & [ SPR < > ] > ],  #1, #2 >  ].
@@ -35,7 +35,7 @@ head-specifier-rule := phrase &
 [ HEAD #0,
   SPR < >,
   COMPS #a,
-  ARGS < phrase & 
+  ARGS < sign & 
          #1 & [ SPR < > ],   phrase & 
                              [ HEAD #0,
                                SPR < #1 >,
@@ -43,9 +43,10 @@ head-specifier-rule := phrase &
 
  
 head-modifier-rule := phrase &
-[ SPR #spr,
+[ HEAD verb,
+  SPR #spr,
   COMPS #comps,
-  ARGS < phrase & #hdtr &
+  ARGS < sign & #hdtr &
          [ SPR #spr,
            COMPS #comps ],
          phrase & 

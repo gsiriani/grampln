@@ -1,0 +1,206 @@
+;; Determinantes
+;; ------------
+
+el := word &
+[ ORTH "el",
+  HEAD det,
+  SPR < >,
+  COMPS < > ].
+
+la := word &
+[ ORTH "la",
+  HEAD det,
+  SPR < >,
+  COMPS < > ].
+
+los := word &
+[ ORTH "los",
+  HEAD det,
+  SPR < >,
+  COMPS < > ].
+
+las := word &
+[ ORTH "las",
+  HEAD det,
+  SPR < >,
+  COMPS < > ].
+
+
+;; Sustantivos
+;; -----------
+
+docente := word &
+[ ORTH "docente",
+  HEAD noun,
+  SPR < [HEAD det] >,
+  COMPS < [HEAD prep] > ].
+
+docentes := word &
+[ ORTH "docentes",
+  HEAD noun,
+  SPR < [HEAD det] >,
+  COMPS < [HEAD prep] > ].
+
+entrega := word &
+[ ORTH "entrega",
+  HEAD noun,
+  SPR < [HEAD det] >,
+  COMPS < [HEAD noun] > ].
+
+estudiantes := word &
+[ ORTH "estudiantes",
+  HEAD noun,
+  SPR < [HEAD det] >,
+  COMPS < > ].
+
+Computacion := word &
+[ ORTH "Computación",
+  HEAD noun,
+  SPR < >,
+  COMPS < > ].
+
+Programacion := word &
+[ ORTH "Programación",
+  HEAD noun,
+  SPR < [HEAD det] >,
+  COMPS < > ].
+
+manifestacion := word &
+[ ORTH "manifestación",
+  HEAD noun,
+  SPR < [HEAD det] >,
+  COMPS < > ].
+
+libros := word &
+[ ORTH "libros",
+  HEAD noun,
+  SPR < >,
+  COMPS < > ].
+
+facultad := word &
+[ ORTH "facultad",
+  HEAD noun,
+  SPR < [HEAD det] >,
+  COMPS < > ].
+
+seis := word &
+[ ORTH "seis",
+  HEAD noun,
+  SPR < [HEAD det] >,
+  COMPS < > ].
+
+tarde := word &
+[ ORTH "tarde",
+  HEAD noun,
+  SPR < [HEAD det] >,
+  COMPS < > ].
+
+semana := word &
+[ ORTH "semana",
+  HEAD noun,
+  SPR < [HEAD det] >,
+  COMPS < > ].
+
+
+;; Verbos
+;; --------
+
+entregara := word &
+[ ORTH "entregará",
+  HEAD verb,
+  SPR < [HEAD noun] >,
+  COMPS < phrase & [HEAD noun], phrase & [HEAD prep] > ].
+
+entregaran := word &
+[ ORTH "entregarán",
+  HEAD verb,
+  SPR < [HEAD noun] >,
+  COMPS < phrase & [HEAD noun], phrase & [HEAD prep] > ].
+
+cancelaron := word &
+[ ORTH "cancelaron",
+  HEAD verb,
+  SPR < [HEAD noun] >,
+  COMPS < > ].
+
+postergaron := word &
+[ ORTH "postergaron",
+  HEAD verb,
+  SPR < [HEAD noun] >,
+  COMPS < > ].
+
+volvieron := word &
+[ ORTH "volvieron",
+  HEAD verb,
+  SPR < [HEAD noun] >,
+  COMPS < > ].
+
+;; Preposiciones
+;; -------------
+
+de := word &
+[ ORTH "de",
+  HEAD prep,
+  SPR < >,
+  COMPS < phrase & [HEAD noun] > ].
+
+a := word &
+[ ORTH "a",
+  HEAD prep,
+  SPR < >,
+  COMPS < phrase & [HEAD noun] > ].
+
+para := word &
+[ ORTH "para",
+  HEAD prep,
+  SPR < >,
+  COMPS < phrase & [HEAD noun] > ].
+
+desde := word &
+[ ORTH "desde",
+  HEAD prep,
+  SPR < >,
+  COMPS < phrase & [HEAD noun] > ].
+
+hasta := word &
+[ ORTH "hasta",
+  HEAD prep,
+  SPR < >,
+  COMPS < phrase & [HEAD noun] > ].
+
+;; Adverbios
+;; ---------
+
+proximamente := word &
+[ ORTH "próximamente",
+  HEAD adv,
+  SPR < >,
+  COMPS < > ].
+
+tarde := word &
+[ ORTH "tarde",
+  HEAD adv,
+  SPR < >,
+  COMPS < > ].
+
+
+;; Adjetivos
+;; ---------
+
+programada := word &
+[ ORTH "programada",
+  HEAD adj,
+  SPR < >,
+  COMPS < > ].
+
+programado := word &
+[ ORTH "programado",
+  HEAD adj,
+  SPR < >,
+  COMPS < > ].
+
+proxima := word &
+[ ORTH "próxima",
+  HEAD adj,
+  SPR < >,
+  COMPS < > ].

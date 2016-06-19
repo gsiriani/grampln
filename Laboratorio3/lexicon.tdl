@@ -53,6 +53,13 @@ estudiantes := word &
   SPR < [HEAD det] >,
   COMPS < > ].
 
+estudiantes_det := word &
+[ ORTH "estudiantes",
+  HEAD noun,
+  SPR < [HEAD det] >,
+  COMPS < [HEAD prep] > ].
+
+
 Computacion := word &
 [ ORTH "Computación",
   HEAD noun,
@@ -60,9 +67,9 @@ Computacion := word &
   COMPS < > ].
 
 Programacion := word &
-[ ORTH "Programación",
+[ ORTH "programación",
   HEAD noun,
-  SPR < [HEAD det] >,
+  SPR < >,
   COMPS < > ].
 
 manifestacion := word &
@@ -76,6 +83,12 @@ libros := word &
   HEAD noun,
   SPR < >,
   COMPS < > ].
+
+libros := word &
+[ ORTH "libros",
+  HEAD noun,
+  SPR < >,
+  COMPS < [HEAD prep] > ].
 
 facultad := word &
 [ ORTH "facultad",
@@ -111,11 +124,17 @@ entregara := word &
   SPR < [HEAD noun] >,
   COMPS < phrase & [HEAD noun], phrase & [HEAD prep] > ].
 
-entregaran := word &
+entregaran_ditransitivo := word &
 [ ORTH "entregarán",
   HEAD verb,
   SPR < [HEAD noun] >,
-  COMPS < phrase & [HEAD noun], phrase & [HEAD prep] > ].
+  COMPS < phrase, phrase > ].
+
+entregaran_transitivo := word &
+[ ORTH "entregarán",
+  HEAD verb,
+  SPR < [HEAD noun] >,
+  COMPS < phrase > ].
 
 cancelaron := word &
 [ ORTH "cancelaron",
@@ -142,7 +161,7 @@ de := word &
 [ ORTH "de",
   HEAD prep,
   SPR < >,
-  COMPS < phrase & [HEAD noun] > ].
+  COMPS < [HEAD noun] > ].
 
 a := word &
 [ ORTH "a",
