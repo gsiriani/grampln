@@ -30,6 +30,15 @@ head-complement-rule-2 := phrase &
            SPR #a, 
            COMPS < #1, #2 & [ SPR < > ] > ],  #1, #2 >  ].
 
+head-complement-rule-1-1 := phrase &
+[ HEAD #0,
+  SPR #a, 
+  COMPS < #2 >,   
+
+  ARGS < sign & 
+         [ HEAD #0,
+           SPR #a, 
+           COMPS < #1, #2 & [ SPR < > ] > ],  #1 >  ].
 
 head-specifier-rule := phrase &
 [ HEAD #0,

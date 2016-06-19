@@ -4,12 +4,16 @@ sign := *top* &
   COMPS *list*].
 
 pos := *top* & [ MOD *list* ].
-noun := pos & [ MOD <> ].
+
 verb := pos & [ MOD <> ].
 det := pos & [ MOD <> ].
-prep := pos & [ MOD <> ].
 adv := pos & [ MOD < [ HEAD verb ] > ].
 adj := pos & [ MOD < [ HEAD noun ] > ].
+
+noun := comp.
+prep := comp.
+
+comp := pos & [ MOD <> ].
 
 phrase := sign & [  ARGS *list* ].
 

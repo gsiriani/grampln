@@ -75,10 +75,10 @@ Programacion := word &
 manifestacion := word &
 [ ORTH "manifestación",
   HEAD noun,
-  SPR < [HEAD det] >,
+  SPR < [HEAD det] >,	
   COMPS < > ].
 
-libros := word &
+libros_solo := word &
 [ ORTH "libros",
   HEAD noun,
   SPR < >,
@@ -128,13 +128,13 @@ entregaran_ditransitivo := word &
 [ ORTH "entregarán",
   HEAD verb,
   SPR < [HEAD noun] >,
-  COMPS < phrase, phrase > ].
+  COMPS < [HEAD comp], [HEAD comp] > ].
 
 entregaran_transitivo := word &
 [ ORTH "entregarán",
   HEAD verb,
   SPR < [HEAD noun] >,
-  COMPS < phrase > ].
+  COMPS < [HEAD comp] > ].
 
 cancelaron := word &
 [ ORTH "cancelaron",
