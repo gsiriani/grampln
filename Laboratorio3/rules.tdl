@@ -60,3 +60,13 @@ head-modifier-rule := phrase &
            COMPS #comps ],
          sign & 
          [HEAD [MOD < #hdtr > ]] > ].
+
+;head-modifier-rule-adj := phrase &
+;[ HEAD noun,
+;  SPR #spr,
+;  COMPS #comps,
+;  ARGS < sign & #hdtr &
+;         [ SPR #spr,
+;           COMPS #comps ],
+;         sign & 
+;         [HEAD [MOD < #hdtr > ]] > ].

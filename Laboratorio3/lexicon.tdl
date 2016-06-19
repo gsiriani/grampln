@@ -35,6 +35,12 @@ docente := word &
   SPR < [HEAD det] >,
   COMPS < [HEAD prep] > ].
 
+docentes_solo := word &
+[ ORTH "docentes",
+  HEAD noun,
+  SPR < [HEAD det] >,
+  COMPS < > ].
+
 docentes := word &
 [ ORTH "docentes",
   HEAD noun,
@@ -45,7 +51,7 @@ entrega := word &
 [ ORTH "entrega",
   HEAD noun,
   SPR < [HEAD det] >,
-  COMPS < [HEAD noun] > ].
+  COMPS < [HEAD prep] > ].
 
 estudiantes := word &
 [ ORTH "estudiantes",
@@ -140,19 +146,25 @@ cancelaron := word &
 [ ORTH "cancelaron",
   HEAD verb,
   SPR < [HEAD noun] >,
-  COMPS < > ].
+  COMPS < [HEAD comp] > ].
+
+cancelaron_ditrans := word &
+[ ORTH "cancelaron",
+  HEAD verb,
+  SPR < [HEAD noun] >,
+  COMPS < [HEAD comp], [HEAD comp] > ].
 
 postergaron := word &
 [ ORTH "postergaron",
   HEAD verb,
   SPR < [HEAD noun] >,
-  COMPS < > ].
+  COMPS < [HEAD comp], [HEAD comp] > ].
 
 volvieron := word &
 [ ORTH "volvieron",
   HEAD verb,
   SPR < [HEAD noun] >,
-  COMPS < > ].
+  COMPS < [HEAD comp] > ].
 
 ;; Preposiciones
 ;; -------------
