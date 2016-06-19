@@ -1,30 +1,10 @@
 ;; Determinantes
 ;; ------------
 
-el := word &
-[ ORTH "el",
-  HEAD det,
-  SPR < >,
-  COMPS < > ].
-
-la := word &
-[ ORTH "la",
-  HEAD det,
-  SPR < >,
-  COMPS < > ].
-
-los := word &
-[ ORTH "los",
-  HEAD det,
-  SPR < >,
-  COMPS < > ].
-
-las := word &
-[ ORTH "las",
-  HEAD det,
-  SPR < >,
-  COMPS < > ].
-
+el := word_det & [ ORTH "el" ].
+la := word_det & [ ORTH "la" ].
+los := word_det & [ ORTH "los" ].
+las := word_det & [ ORTH "las" ].
 
 ;; Sustantivos
 ;; -----------
@@ -114,6 +94,12 @@ tarde := word &
   SPR < [HEAD det] >,
   COMPS < > ].
 
+tarde_solo := word &
+[ ORTH "tarde",
+  HEAD noun,
+  SPR < >,
+  COMPS < > ].
+
 semana := word &
 [ ORTH "semana",
   HEAD noun,
@@ -124,114 +110,43 @@ semana := word &
 ;; Verbos
 ;; --------
 
-entregara := word &
-[ ORTH "entregará",
-  HEAD verb,
-  SPR < [HEAD noun] >,
-  COMPS < phrase & [HEAD noun], phrase & [HEAD prep] > ].
+entregara := word_verb_ditransitive & [ ORTH "entregará" ].
 
-entregaran_ditransitivo := word &
-[ ORTH "entregarán",
-  HEAD verb,
-  SPR < [HEAD noun] >,
-  COMPS < [HEAD comp], [HEAD comp] > ].
+entregaran_ditransitivo := word_verb_ditransitive & [ ORTH "entregarán" ].
 
-entregaran_transitivo := word &
-[ ORTH "entregarán",
-  HEAD verb,
-  SPR < [HEAD noun] >,
-  COMPS < [HEAD comp] > ].
+entregaran_transitivo := word_verb_transitive & [ ORTH "entregarán" ].
 
-cancelaron := word &
-[ ORTH "cancelaron",
-  HEAD verb,
-  SPR < [HEAD noun] >,
-  COMPS < [HEAD comp] > ].
+cancelaron := word_verb_transitive & [ ORTH "cancelaron" ].
 
-cancelaron_ditrans := word &
-[ ORTH "cancelaron",
-  HEAD verb,
-  SPR < [HEAD noun] >,
-  COMPS < [HEAD comp], [HEAD comp] > ].
+cancelaron_ditrans := word_verb_ditransitive & [ ORTH "cancelaron" ].
 
-postergaron := word &
-[ ORTH "postergaron",
-  HEAD verb,
-  SPR < [HEAD noun] >,
-  COMPS < [HEAD comp], [HEAD comp] > ].
+postergaron := word_verb_ditransitive & [ ORTH "postergaron" ].
 
-volvieron := word &
-[ ORTH "volvieron",
-  HEAD verb,
-  SPR < [HEAD noun] >,
-  COMPS < [HEAD comp] > ].
+volvieron_intransitive := word_verb_intransitive & [ ORTH "volvieron" ].
+
+volvieron_transitive := word_verb_transitive & [ ORTH "volvieron" ].
+
+volvieron_ditransitive := word_verb_ditransitive & [ ORTH "volvieron" ].
 
 ;; Preposiciones
 ;; -------------
 
-de := word &
-[ ORTH "de",
-  HEAD prep,
-  SPR < >,
-  COMPS < [HEAD noun] > ].
-
-a := word &
-[ ORTH "a",
-  HEAD prep,
-  SPR < >,
-  COMPS < phrase & [HEAD noun] > ].
-
-para := word &
-[ ORTH "para",
-  HEAD prep,
-  SPR < >,
-  COMPS < phrase & [HEAD noun] > ].
-
-desde := word &
-[ ORTH "desde",
-  HEAD prep,
-  SPR < >,
-  COMPS < phrase & [HEAD noun] > ].
-
-hasta := word &
-[ ORTH "hasta",
-  HEAD prep,
-  SPR < >,
-  COMPS < phrase & [HEAD noun] > ].
+de := word_prep & [ ORTH "de" ].
+a := word_prep & [ ORTH "a" ].
+para := word_prep & [ ORTH "para" ].
+desde := word_prep & [ ORTH "desde" ].
+hasta := word_prep & [ ORTH "hasta" ].
 
 ;; Adverbios
 ;; ---------
 
-proximamente := word &
-[ ORTH "próximamente",
-  HEAD adv,
-  SPR < >,
-  COMPS < > ].
+proximamente := word_adv & [ ORTH "próximamente" ].
 
-tarde_adv := word &
-[ ORTH "tarde",
-  HEAD adv,
-  SPR < >,
-  COMPS < > ].
-
+tarde_adv := word_adv & [ ORTH "tarde" ].
 
 ;; Adjetivos
 ;; ---------
 
-programada := word &
-[ ORTH "programada",
-  HEAD adj,
-  SPR < >,
-  COMPS < > ].
-
-programado := word &
-[ ORTH "programado",
-  HEAD adj,
-  SPR < >,
-  COMPS < > ].
-
-proxima := word &
-[ ORTH "próxima",
-  HEAD adj,
-  SPR < >,
-  COMPS < > ].
+programada := word_adj & [ ORTH "programada" ].
+programado := word_adj & [ ORTH "programado" ].
+proxima := word_adj & [ ORTH "próxima" ].
