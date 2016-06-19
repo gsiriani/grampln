@@ -33,19 +33,19 @@ docente := word &
 [ ORTH "docente",
   HEAD noun,
   SPR < [HEAD det] >,
-  COMPS < > ].
+  COMPS < [HEAD prep] > ].
 
 docentes := word &
 [ ORTH "docentes",
   HEAD noun,
   SPR < [HEAD det] >,
-  COMPS < > ].
+  COMPS < [HEAD prep] > ].
 
 entrega := word &
 [ ORTH "entrega",
   HEAD noun,
   SPR < [HEAD det] >,
-  COMPS < > ].
+  COMPS < [HEAD noun] > ].
 
 estudiantes := word &
 [ ORTH "estudiantes",
@@ -56,7 +56,7 @@ estudiantes := word &
 Computacion := word &
 [ ORTH "Computación",
   HEAD noun,
-  SPR < [HEAD det] >,
+  SPR < >,
   COMPS < > ].
 
 Programacion := word &
@@ -66,7 +66,7 @@ Programacion := word &
   COMPS < > ].
 
 manifestacion := word &
-[ ORTH "manifestacion",
+[ ORTH "manifestación",
   HEAD noun,
   SPR < [HEAD det] >,
   COMPS < > ].
@@ -74,7 +74,7 @@ manifestacion := word &
 libros := word &
 [ ORTH "libros",
   HEAD noun,
-  SPR < [HEAD det] >,
+  SPR < >,
   COMPS < > ].
 
 facultad := word &
@@ -109,13 +109,13 @@ entregara := word &
 [ ORTH "entregará",
   HEAD verb,
   SPR < [HEAD noun] >,
-  COMPS < > ].
+  COMPS < phrase & [HEAD noun], phrase & [HEAD prep] > ].
 
 entregaran := word &
 [ ORTH "entregarán",
   HEAD verb,
   SPR < [HEAD noun] >,
-  COMPS < > ].
+  COMPS < phrase & [HEAD adv], phrase & [HEAD noun], phrase & [HEAD prep] > ].
 
 cancelaron := word &
 [ ORTH "cancelaron",
@@ -175,15 +175,13 @@ proximamente := word &
 [ ORTH "próximamente",
   HEAD adv,
   SPR < >,
-  COMPS < >, 
-  MOD < [HEAD verb] > ].
+  COMPS < > ].
 
 tarde := word &
 [ ORTH "tarde",
   HEAD adv,
   SPR < >,
-  COMPS < >, 
-  MOD < [HEAD verb] > ].
+  COMPS < > ].
 
 
 ;; Adjetivos
@@ -193,19 +191,16 @@ programada := word &
 [ ORTH "programada",
   HEAD adj,
   SPR < >,
-  COMPS < >, 
-  MOD < [HEAD noun] > ].
+  COMPS < > ].
 
 programado := word &
 [ ORTH "programado",
   HEAD adj,
   SPR < >,
-  COMPS < >, 
-  MOD < [HEAD noun] > ].
+  COMPS < > ].
 
 proxima := word &
 [ ORTH "próxima",
   HEAD adj,
   SPR < >,
-  COMPS < >, 
-  MOD < [HEAD noun] > ].
+  COMPS < > ].

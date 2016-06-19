@@ -4,6 +4,10 @@ vp := phrase & [ HEAD verb, SPR < [] >, COMPS <> ].
 
 v := [ HEAD verb ].
 
+a := [ HEAD adv ].
+
+av := phrase & [ HEAD adv ].
+
 np := phrase & [ HEAD noun, SPR <>, COMPS <> ].
 
 n := [ HEAD noun, SPR < [] > ].

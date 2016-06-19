@@ -3,20 +3,19 @@ sign := *top* &
   SPR *list*,
   COMPS *list* ].
 
-pos := *top*.
-noun := pos.
-verb := pos.
-det := pos.
-prep := pos.
-adv := pos.
-adj := pos.
+pos := *top* & [ MOD *list* ].
+noun := pos & [ MOD <> ].
+verb := pos & [ MOD <> ].
+det := pos & [ MOD <> ].
+prep := pos & [ MOD <> ].
+adv := pos & [ MOD < [ HEAD verb ] > ].
+adj := pos & [ MOD < [ HEAD noun ] > ].
 
 phrase := sign &
 [ ARGS *list* ].
 
 word := sign &
-[ ORTH string,
-  MOD *list* ].
+[ ORTH string ].
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 
