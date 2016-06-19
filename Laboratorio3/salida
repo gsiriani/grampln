@@ -1,32 +1,32 @@
-1 El docente de Computación entregará libros a los estudiantes. 2 51
-2 Los docentes de Computación entregarán próximamente libros a los estudiantes. 5 86
-3 Los docentes de Computación entregarán libros próximamente a los estudiantes. 3 78
-4 Los docentes de Computación entregarán libros de Programación a los estudiantes de la facultad. 2 98
-5 Los docentes de Computación entregarán a los estudiantes de Programación libros de la facultad. 2 95
-6 Los docentes de Computación entregarán libros de Programación a las seis de la tarde. 2 93
-7 Los docentes cancelaron la entrega de libros a los estudiantes. 3 61
-8 Los docentes cancelaron la entrega de libros de Programación a los estudiantes. 2 72
-9 Los docentes cancelaron la entrega de libros. 1 36
-10 Los docentes cancelaron la entrega de libros programada. 4 68
-11 Los docentes cancelaron la entrega programada de libros. 4 52
-12 Los docentes postergaron para la semana próxima la entrega de libros a los estudiantes. 6 100
-13 Los docentes postergaron la entrega de libros a los estudiantes. 2 56
-14 Los estudiantes volvieron de la manifestación a la facultad. 2 50
-15 Los estudiantes volvieron desde la manifestación a la facultad. 2 50
-16 Los estudiantes volvieron hasta la facultad desde la manifestación. 2 50
-17 Los estudiantes volvieron tarde. 5 42
-18 Los estudiantes volvieron de tarde. 1 33
-19 Los estudiantes volvieron a las seis de la tarde. 1 51
-20 Los estudiantes volvieron a la facultad para la entrega de libros. 2 59
-21 *Los docente de Computación entregarán próximamente libros a los estudiantes. 5 83
-22 *Los docentes de Computación entregarán a libros a los estudiantes. 3 66
-23 *Los docentes de Computación entregará libros a los estudiantes. 2 54
-24 *Los docentes cancelaron la entrega de libros programado. 4 68
-25 *Los docentes postergaron para la semana próxima. 0 46
+1 El docente de Computación entregará libros a los estudiantes. 1 45
+2 Los docentes de Computación entregarán próximamente libros a los estudiantes. 2 64
+3 Los docentes de Computación entregarán libros próximamente a los estudiantes. 1 68
+4 Los docentes de Computación entregarán libros de Programación a los estudiantes de la facultad. 1 88
+5 Los docentes de Computación entregarán a los estudiantes de Programación libros de la facultad. 1 85
+6 Los docentes de Computación entregarán libros de Programación a las seis de la tarde. 1 85
+7 Los docentes cancelaron la entrega de libros a los estudiantes. 2 58
+8 Los docentes cancelaron la entrega de libros de Programación a los estudiantes. 1 68
+9 Los docentes cancelaron la entrega de libros. 1 35
+10 Los docentes cancelaron la entrega de libros programada. 4 63
+11 Los docentes cancelaron la entrega programada de libros. 1 40
+12 Los docentes postergaron para la semana próxima la entrega de libros a los estudiantes. 3 90
+13 Los docentes postergaron la entrega de libros a los estudiantes. 1 53
+14 Los estudiantes volvieron de la manifestación a la facultad. 1 48
+15 Los estudiantes volvieron desde la manifestación a la facultad. 1 48
+16 Los estudiantes volvieron hasta la facultad desde la manifestación. 1 48
+17 Los estudiantes volvieron tarde. 5 38
+18 Los estudiantes volvieron de tarde. 1 32
+19 Los estudiantes volvieron a las seis de la tarde. 1 50
+20 Los estudiantes volvieron a la facultad para la entrega de libros. 1 57
+21 *Los docente de Computación entregarán próximamente libros a los estudiantes. 2 61
+22 *Los docentes de Computación entregarán a libros a los estudiantes. 2 60
+23 *Los docentes de Computación entregará libros a los estudiantes. 1 48
+24 *Los docentes cancelaron la entrega de libros programado. 4 63
+25 *Los docentes postergaron para la semana próxima. 0 42
 26 *Los estudiantes volvieron desde manifestación desde la facultad. 0 37
 
 ;;; Total CPU time: 60 msecs
 
-;;; Mean edges: 62.88
+;;; Mean edges: 56.69
 
-;;; Mean parses: 2.58
+;;; Mean parses: 1.54
