@@ -2,11 +2,11 @@ head-complement-rule-0 := phrase &
 [ HEAD #0,
   SPR #a,
   COMPS < >,   
-
   ARGS < word & 
          [ HEAD #0,
            SPR #a, 
-           COMPS < > ] >  ].
+           COMPS < >, 
+           LOC < > ] >  ].
 
 
 head-complement-rule-1 := phrase &
@@ -18,17 +18,6 @@ head-complement-rule-1 := phrase &
          [ HEAD #0,
            SPR #a, 
            COMPS < #1 & [ SPR < > ] > ],  #1 & [ COMPS < > ] >  ].
-
-
-;head-complement-rule-2 := phrase &
-;[ HEAD #0,
-;  SPR #a, 
-;  COMPS < >,   
-;
-;  ARGS < sign & 
-;         [ HEAD #0,
-;           SPR #a, 
-;           COMPS < #1, #2 & [ SPR < > ] > ],  #1, #2 >  ].
 
 head-complement-rule-1-1 := phrase &
 [ HEAD #0,
@@ -50,14 +39,33 @@ head-specifier-rule := phrase &
                                SPR < #1 >,
                                COMPS <> ] > ].
 
- 
 head-modifier-rule := phrase &
 [ HEAD #head,
-  SPR #spr,
+  SPR < #spr >,
   COMPS #comps,
   ARGS < sign & #hdtr &
-         [ SPR #spr,
+         [ SPR < #spr >,
            COMPS #comps,
 	   HEAD #head ],
          word & 
          [HEAD [MOD < #hdtr > ]] > ].
+
+head-modifier-rule_2 := phrase &
+[ HEAD #head,
+  SPR < #spr >,
+  COMPS #comps,
+  ARGS < sign & #hdtr &
+         [ SPR < #spr >,
+           COMPS #comps,
+	   HEAD #head ],
+         loc_adv & 
+         [HEAD [MOD < #hdtr > ]] > ].
+
+loc-adv-rule := loc_adv &
+[ HEAD #head,
+  SPR < >,
+  COMPS < >,
+  ARGS < word & #x,
+         word_adv & [ HEAD #head,
+	 LOC < #x > ] >
+ ].

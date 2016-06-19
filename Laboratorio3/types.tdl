@@ -18,7 +18,7 @@ comp := pos & [ MOD <> ].
 phrase := sign & [  ARGS *list* ].
 
 word := sign &
-[ ORTH string ].
+[ ORTH string, LOC *list*  ].
 
 word_verb_intransitive := word & 
 	[ HEAD verb,
@@ -46,6 +46,8 @@ word_prep := word & [ HEAD prep,
 word_adv := word & [ HEAD adv,
 	      SPR < >,
 	      COMPS < > ].
+
+loc_adv := phrase & [ HEAD adv ].
 
 word_adj := word & [ HEAD adj,
   	      SPR < >,

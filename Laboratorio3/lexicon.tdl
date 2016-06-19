@@ -94,12 +94,6 @@ tarde := word &
   SPR < [HEAD det] >,
   COMPS < > ].
 
-tarde_solo := word &
-[ ORTH "tarde",
-  HEAD noun,
-  SPR < >,
-  COMPS < > ].
-
 semana := word &
 [ ORTH "semana",
   HEAD noun,
@@ -142,7 +136,7 @@ hasta := word_prep & [ ORTH "hasta" ].
 
 proximamente := word_adv & [ ORTH "próximamente" ].
 
-tarde_adv := word_adv & [ ORTH "tarde" ].
+tarde_adv := word_adv & [ ORTH "tarde",  LOC < [HEAD prep, ORTH "de" ] >].
 
 ;; Adjetivos
 ;; ---------
