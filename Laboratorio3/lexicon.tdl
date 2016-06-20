@@ -125,7 +125,7 @@ entregaran_transitivo := word_verb_transitive & [HEAD[AGR [NUM pl, PER ter]]] & 
 
 cancelaron := word_verb_transitive & [HEAD [AGR [NUM pl, PER ter]]] & [ ORTH "cancelaron" ].
 
-cancelaron_ditrans := word_verb_ditransitive & [HEAD [AGR [NUM pl, PER ter]]] & [ ORTH "cancelaron" ].
+; cancelaron_ditrans := word_verb_ditransitive & [HEAD [AGR [NUM pl, PER ter]]] & [ ORTH "cancelaron" ].
 
 postergaron := word_verb_ditransitive & [HEAD [AGR [NUM pl, PER ter]]] & [ ORTH "postergaron" ].
 
@@ -147,8 +147,7 @@ hasta := word_prep_non_noun & [ ORTH "hasta" ].
 ;; Adverbios
 ;; ---------
 
-proximamente := word_adv & [ ORTH "próximamente" ].
-; tarde_adv := word_adv & [ ORTH "tarde"].
+proximamente := word_adv & [ ORTH "próximamente", LOC < >].
 tarde_adv_loc := word_adv & [ ORTH "tarde",  LOC < [HEAD prep, ORTH "de" ] >].
 
 
