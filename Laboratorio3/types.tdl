@@ -5,14 +5,40 @@ sign := *top* &
 
 pos := *top* & [ MOD *list* ].
 
-verb := pos & [ MOD <> ].
-det := pos & [ MOD <> ].
+
 adv := pos & [ MOD <> ].
 l_adv := pos & [ MOD < [ HEAD verb ] > ].
-adj := pos & [ MOD < [ HEAD noun ] > ].
 
-noun := comp.
+
 prep := comp.
+
+
+agr-pos := pos & [ AGR agr-cat ].
+adj := agr-pos & [AGR agr-cat-g] & [ MOD < [ HEAD noun ] > ].
+
+agr-pos-pg := agr-pos & [ AGR agr-cat-pg ].
+verb := agr-pos & [ AGR agr-cat-p ] & [ MOD <> ].
+
+det := agr-pos-pg & [ MOD <> ].
+noun := comp & agr-pos-pg.
+
+agr-cat := *top* & [ NUM num-cat ].
+agr-cat-p := agr-cat & [ PER per-cat ].
+agr-cat-g := agr-cat & [ GEN gen-cat ].
+agr-cat-pg := agr-cat-p & agr-cat-g.
+
+num-cat := *top*.
+sg := num-cat.
+pl := num-cat.
+
+per-cat := *top*.
+pri := per-cat.
+seg := per-cat.
+ter := per-cat.
+
+gen-cat := *top*.
+ma := gen-cat.
+fe := gen-cat.
 
 comp := pos & [ MOD <> ].
 

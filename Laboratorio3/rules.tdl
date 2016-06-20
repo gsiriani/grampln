@@ -34,8 +34,8 @@ head-specifier-rule := phrase &
   SPR < >,
   COMPS <>,
   ARGS < phrase & 
-         #1 & [ SPR < > ],   phrase & 
-                             [ HEAD #0,
+         #1 & [HEAD [AGR [NUM #num, GEN #gen, PER #per]]] & [ SPR < > ],   phrase & 
+                             [ HEAD #0 & [AGR [NUM #num, GEN #gen, PER #per]],
                                SPR < #1 >,
                                COMPS <> ] > ].
 

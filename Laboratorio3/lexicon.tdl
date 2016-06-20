@@ -1,47 +1,47 @@
 ;; Determinantes
 ;; ------------
 
-el := word_det & [ ORTH "el" ].
-la := word_det & [ ORTH "la" ].
-los := word_det & [ ORTH "los" ].
-las := word_det & [ ORTH "las" ].
+el := word_det & [HEAD [AGR [NUM sg, GEN ma]]] & [ ORTH "el" ].
+la := word_det & [HEAD [AGR [NUM sg, GEN fe]]] & [ ORTH "la" ].
+los := word_det & [HEAD [AGR [NUM pl, GEN ma]]] & [ ORTH "los" ].
+las := word_det & [HEAD [AGR [NUM pl, GEN fe]]] & [ ORTH "las" ].
 
 ;; Sustantivos
 ;; -----------
 
 docente := word &
 [ ORTH "docente",
-  HEAD noun,
+  HEAD noun & [ AGR [ NUM sg, GEN ma ] ],
   SPR < [HEAD det] >,
   COMPS < [HEAD prep] > ].
 
 docentes_solo := word &
 [ ORTH "docentes",
-  HEAD noun,
+  HEAD noun & [ AGR [ NUM pl, GEN ma ] ],
   SPR < [HEAD det] >,
   COMPS < > ].
 
 docentes := word &
 [ ORTH "docentes",
-  HEAD noun,
+  HEAD noun & [ AGR [ NUM pl, GEN ma ] ],
   SPR < [HEAD det] >,
   COMPS < [HEAD prep] > ].
 
 entrega := word &
 [ ORTH "entrega",
-  HEAD noun,
+  HEAD noun & [AGR [NUM sg, GEN fe]],
   SPR < [HEAD det] >,
   COMPS < [HEAD prep] > ].
 
 estudiantes := word &
 [ ORTH "estudiantes",
-  HEAD noun,
+  HEAD noun & [AGR [NUM pl]],
   SPR < [HEAD det] >,
   COMPS < > ].
 
 estudiantes_det := word &
 [ ORTH "estudiantes",
-  HEAD noun,
+  HEAD noun & [AGR [NUM pl]],
   SPR < [HEAD det] >,
   COMPS < [HEAD prep] > ].
 
@@ -60,43 +60,49 @@ Programacion := word &
 
 manifestacion := word &
 [ ORTH "manifestación",
-  HEAD noun,
+  HEAD noun & [AGR [NUM sg, GEN fe]],
   SPR < [HEAD det] >,	
   COMPS < > ].
 
 libros_solo := word &
 [ ORTH "libros",
-  HEAD noun,
+  HEAD noun & [AGR [NUM pl, GEN ma]] & [MOD < >],
   SPR < >,
   COMPS < > ].
 
 libros := word &
 [ ORTH "libros",
-  HEAD noun,
+  HEAD noun & [AGR [NUM pl, GEN ma]],
   SPR < >,
   COMPS < phrase & [HEAD prep] > ].
 
 facultad := word &
 [ ORTH "facultad",
-  HEAD noun,
+  HEAD noun & [AGR [NUM sg, GEN fe]],
   SPR < [HEAD det] >,
   COMPS < > ].
 
 seis := word &
 [ ORTH "seis",
-  HEAD noun,
+  HEAD noun & [AGR [GEN fe]],
   SPR < [HEAD det] >,
   COMPS < phrase & [HEAD prep] > ].
 
 tarde := word &
 [ ORTH "tarde",
-  HEAD noun,
+  HEAD noun & [AGR [NUM sg, GEN fe]],
   SPR < [HEAD det] >,
   COMPS < > ].
-
+#|
+tarde_solo := word &
+[ ORTH "tarde",
+  HEAD noun & [AGR [NUM sg, GEN fe]],
+  SPR < >,
+  COMPS < > ].
+|#
 semana := word &
 [ ORTH "semana",
-  HEAD noun,
+  HEAD noun & [AGR [NUM sg, GEN fe]],
   SPR < [HEAD det] >,
   COMPS < > ].
 
@@ -104,23 +110,23 @@ semana := word &
 ;; Verbos
 ;; --------
 
-entregara := word_verb_ditransitive & [ ORTH "entregará" ].
+entregara := word_verb_ditransitive & [HEAD [AGR [NUM sg, PER ter]]] & [ ORTH "entregará" ].
 
-entregaran_ditransitivo := word_verb_ditransitive & [ ORTH "entregarán" ].
+entregaran_ditransitivo := word_verb_ditransitive & [HEAD [AGR [NUM pl, PER ter]]] & [ ORTH "entregarán" ].
 
-entregaran_transitivo := word_verb_transitive & [ ORTH "entregarán" ].
+entregaran_transitivo := word_verb_transitive & [HEAD[AGR [NUM pl, PER ter]]] & [ ORTH "entregarán" ].
 
-cancelaron := word_verb_transitive & [ ORTH "cancelaron" ].
+cancelaron := word_verb_transitive & [HEAD [AGR [NUM pl, PER ter]]] & [ ORTH "cancelaron" ].
 
-cancelaron_ditrans := word_verb_ditransitive & [ ORTH "cancelaron" ].
+cancelaron_ditrans := word_verb_ditransitive & [HEAD [AGR [NUM pl, PER ter]]] & [ ORTH "cancelaron" ].
 
-postergaron := word_verb_ditransitive & [ ORTH "postergaron" ].
+postergaron := word_verb_ditransitive & [HEAD [AGR [NUM pl, PER ter]]] & [ ORTH "postergaron" ].
 
-volvieron_intransitive := word_verb_intransitive & [ ORTH "volvieron" ].
+volvieron_intransitive := word_verb_intransitive & [HEAD [AGR [NUM pl, PER ter]]] & [ ORTH "volvieron" ].
 
-volvieron_transitive := word_verb_transitive & [ ORTH "volvieron" ].
+volvieron_transitive := word_verb_transitive & [HEAD [AGR [NUM pl, PER ter]]] & [ ORTH "volvieron" ].
 
-volvieron_ditransitive := word_verb_ditransitive & [ ORTH "volvieron" ].
+volvieron_ditransitive := word_verb_ditransitive & [HEAD [AGR [NUM pl, PER ter]]] & [ ORTH "volvieron" ].
 
 ;; Preposiciones
 ;; -------------
@@ -138,9 +144,10 @@ proximamente := word_adv & [ ORTH "próximamente" ].
 tarde_adv := word_adv & [ ORTH "tarde" ].
 tarde_adv_loc := word_adv & [ ORTH "tarde",  LOC < [HEAD prep, ORTH "de" ] >].
 
+
 ;; Adjetivos
 ;; ---------
 
-programada := word_adj & [ ORTH "programada" ].
-programado := word_adj & [ ORTH "programado" ].
-proxima := word_adj & [ ORTH "próxima" ].
+programada := word_adj & [HEAD [AGR [NUM sg, GEN fe]]] & [ ORTH "programada" ].
+programado := word_adj & [HEAD [AGR [NUM sg, GEN ma]]] & [ ORTH "programado" ].
+proxima := word_adj & [HEAD [AGR [NUM sg, GEN fe]]] & [ ORTH "próxima" ].
