@@ -13,7 +13,7 @@ docente := word &
 [ ORTH "docente",
   HEAD noun & [ AGR [ NUM sg, GEN ma ] ],
   SPR < [HEAD det] >,
-  COMPS < [HEAD prep] > ].
+  COMPS < [HEAD prep-nounable] > ].
 
 docentes_solo := word &
 [ ORTH "docentes",
@@ -25,13 +25,19 @@ docentes := word &
 [ ORTH "docentes",
   HEAD noun & [ AGR [ NUM pl, GEN ma ] ],
   SPR < [HEAD det] >,
-  COMPS < [HEAD prep] > ].
+  COMPS < [HEAD prep-nounable] > ].
 
 entrega := word &
 [ ORTH "entrega",
   HEAD noun & [AGR [NUM sg, GEN fe]],
   SPR < [HEAD det] >,
   COMPS < [HEAD prep] > ].
+
+entrega_prep := word &
+[ ORTH "entrega",
+  HEAD noun & [AGR [NUM sg, GEN fe]],
+  SPR < [HEAD det] >,
+  COMPS < [HEAD prep], [HEAD prep] > ].
 
 estudiantes := word &
 [ ORTH "estudiantes",
@@ -43,7 +49,7 @@ estudiantes_det := word &
 [ ORTH "estudiantes",
   HEAD noun & [AGR [NUM pl]],
   SPR < [HEAD det] >,
-  COMPS < [HEAD prep] > ].
+  COMPS < [HEAD prep-nounable] > ].
 
 
 Computacion := word &
@@ -74,7 +80,7 @@ libros := word &
 [ ORTH "libros",
   HEAD noun & [AGR [NUM pl, GEN ma]],
   SPR < >,
-  COMPS < phrase & [HEAD prep] > ].
+  COMPS < phrase & [ HEAD prep-nounable ] > ].
 
 facultad := word &
 [ ORTH "facultad",
@@ -86,7 +92,7 @@ seis := word &
 [ ORTH "seis",
   HEAD noun & [AGR [GEN fe]],
   SPR < [HEAD det] >,
-  COMPS < phrase & [HEAD prep] > ].
+  COMPS < phrase & [HEAD prep-nounable] > ].
 
 tarde := word &
 [ ORTH "tarde",
@@ -112,7 +118,8 @@ semana := word &
 
 entregara := word_verb_ditransitive & [HEAD [AGR [NUM sg, PER ter]]] & [ ORTH "entregará" ].
 
-entregaran_ditransitivo := word_verb_ditransitive & [HEAD [AGR [NUM pl, PER ter]]] & [ ORTH "entregarán" ].
+entregaran_ditransitivo_a := word_verb_ditransitive_a & [HEAD [AGR [NUM pl, PER ter]]] & [ ORTH "entregarán" ].
+entregaran_ditransitivo_b := word_verb_ditransitive_b & [HEAD [AGR [NUM pl, PER ter]]] & [ ORTH "entregarán" ].
 
 entregaran_transitivo := word_verb_transitive & [HEAD[AGR [NUM pl, PER ter]]] & [ ORTH "entregarán" ].
 
@@ -131,17 +138,17 @@ volvieron_ditransitive := word_verb_ditransitive & [HEAD [AGR [NUM pl, PER ter]]
 ;; Preposiciones
 ;; -------------
 
-de := word_prep & [ ORTH "de" ].
-a := word_prep & [ ORTH "a" ].
-para := word_prep & [ ORTH "para" ].
-desde := word_prep & [ ORTH "desde" ].
-hasta := word_prep & [ ORTH "hasta" ].
+de := word_prep_noun & [ ORTH "de" ].
+a := word_prep_non_noun & [ ORTH "a" ].
+para := word_prep_non_noun & [ ORTH "para" ].
+desde := word_prep_non_noun & [ ORTH "desde" ].
+hasta := word_prep_non_noun & [ ORTH "hasta" ].
 
 ;; Adverbios
 ;; ---------
 
 proximamente := word_adv & [ ORTH "próximamente" ].
-tarde_adv := word_adv & [ ORTH "tarde" ].
+; tarde_adv := word_adv & [ ORTH "tarde"].
 tarde_adv_loc := word_adv & [ ORTH "tarde",  LOC < [HEAD prep, ORTH "de" ] >].
 
 

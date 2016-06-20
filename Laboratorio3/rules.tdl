@@ -39,7 +39,7 @@ head-specifier-rule := phrase &
                                SPR < #1 >,
                                COMPS <> ] > ].
 
-head-modifier-rule := phrase &
+head-modifier-rule-adv := phrase &
 [ HEAD #head,
   SPR < #spr >,
   COMPS #comps,
@@ -48,7 +48,19 @@ head-modifier-rule := phrase &
            COMPS #comps,
 	   HEAD #head ],
          word & 
-         [HEAD [MOD < #hdtr > ]] > ].
+         [HEAD l_adv & [MOD < #hdtr > ]] > ].
+
+head-modifier-rule-agr := phrase &
+[ HEAD #head,
+  SPR < #spr >,
+  COMPS #comps,
+  ARGS < sign & #hdtr &
+         [ SPR < #spr >,
+           COMPS #comps,
+	   HEAD #head & [ AGR [NUM #n, GEN #g] ] ],
+	word & 
+         [HEAD [MOD < #hdtr > ]] & [HEAD [ AGR [ NUM #n, GEN #g ] ] ]
+	> ].
 
 head-modifier-rule_2 := phrase &
 [ HEAD #head,
@@ -65,7 +77,7 @@ head-modifier-rule_2 := phrase &
 loc-adv-rule-0 := loc_adv &
 [ SPR < >,
   COMPS < >,
-  ARGS < word_adv & [ LOC < > ] >
+  ARGS < word_adv >
 ].
 
 loc-adv-rule-1 := loc_adv &

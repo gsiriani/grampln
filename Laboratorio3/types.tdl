@@ -11,7 +11,8 @@ l_adv := pos & [ MOD < [ HEAD verb ] > ].
 
 
 prep := comp.
-
+prep-nounable := prep.
+prep-non-nounable := prep.
 
 agr-pos := pos & [ AGR agr-cat ].
 adj := agr-pos & [AGR agr-cat-g] & [ MOD < [ HEAD noun ] > ].
@@ -61,11 +62,26 @@ word_verb_ditransitive := word &
 	  SPR < [HEAD noun] >,
 	  COMPS < phrase & [HEAD comp], phrase & [HEAD comp] > ].
 
+word_verb_ditransitive_a := word & 
+	[ HEAD verb,
+	  SPR < [HEAD noun] >,
+	  COMPS < phrase & [HEAD noun], phrase & [HEAD prep] > ].
+
+word_verb_ditransitive_b := word & 
+	[ HEAD verb,
+	  SPR < [HEAD noun] >,
+	  COMPS < phrase & [HEAD prep], phrase & [HEAD noun] > ].
+
+
 word_det := word & [ HEAD det,
 	      SPR < >,
 	      COMPS < > ].
 
-word_prep := word & [ HEAD prep,
+word_prep_non_noun := word & [ HEAD prep-non-nounable,
+	       SPR < >,
+	       COMPS < phrase & [HEAD noun] > ].
+
+word_prep_noun := word & [ HEAD prep-nounable,
 	       SPR < >,
 	       COMPS < phrase & [HEAD noun] > ].
 
