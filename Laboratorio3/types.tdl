@@ -1,27 +1,34 @@
+
+; Tipos base
+
+string := *top*.
+
+*list* := *top*.
+
+*ne-list* := *list* &
+ [ FIRST *top*,
+   REST *list* ].
+
+*null* := *list*.
+
+; Tipo base de los nodos
 sign := *top* & 
 [ HEAD pos,
   SPR *list*,
   COMPS *list*].
 
+; Representan estructuras de una o mas palabras
+phrase := sign & [ ARGS *list* ].
+
+; Representan estructuras de una sola palabra
+word := sign & [ ORTH string, LOC *list* ].
+
+; Tipo base de las categorias lexica
 pos := *top* & [ MOD *list* ].
 
-
-adv := pos & [ MOD <> ].
-l_adv := pos & [ MOD < [ HEAD verb ] > ].
-
-
-prep := comp.
-prep-nounable := prep.
-prep-non-nounable := prep.
-
+; Especificaciones de las categorias lexicas que poseen agreement
 agr-pos := pos & [ AGR agr-cat ].
-adj := agr-pos & [AGR agr-cat-g] & [ MOD < [ HEAD noun ] > ].
-
 agr-pos-pg := agr-pos & [ AGR agr-cat-pg ].
-verb := agr-pos & [ AGR agr-cat-p ] & [ MOD <> ].
-
-det := agr-pos-pg & [ MOD <> ].
-noun := comp & agr-pos-pg.
 
 agr-cat := *top* & [ NUM num-cat ].
 agr-cat-p := agr-cat & [ PER per-cat ].
@@ -41,12 +48,37 @@ gen-cat := *top*.
 ma := gen-cat.
 fe := gen-cat.
 
+; Categoria lexica Adverbio
+adv := pos & [ MOD <> ].
+
+; Categoria lexica Locucion adverbial
+l_adv := pos & [ MOD < [ HEAD verb ] > ].
+
+; Categoria lexica Preposicion
+prep := comp.
+; Especificacion de las preposiciones que acompanan los sustantivos
+prep-nounable := prep.
+; Especificacion de las preposiciones que acompanan los verbos
+prep-verb := prep.
+
+; Categoria lexica Adjetivo
+adj := agr-pos & [AGR agr-cat-g] & [ MOD < [ HEAD noun ] > ].
+
+; Categoria lexica verbo
+verb := agr-pos & [ AGR agr-cat-p ] & [ MOD <> ].
+
+; Categoria lexica Determinante
+det := agr-pos-pg & [ MOD <> ].
+
+; Categoria lexica Sustantivo
+noun := comp & agr-pos-pg.
+
+; Especificacion de las categorias lexicas que complementan verbos y sustantivos
 comp := pos & [ MOD <> ].
 
-phrase := sign & [ ARGS *list* ].
 
-word := sign & [ ORTH string, LOC *list* ].
-
+; Tipos con especificacion general de las palabras de determinadas
+; categorias lexicas
 word_verb_intransitive := word & 
 	[ HEAD verb,
 	  SPR < [HEAD noun] >,
@@ -62,22 +94,23 @@ word_verb_ditransitive := word &
 	  SPR < [HEAD noun] >,
 	  COMPS < phrase & [HEAD comp], phrase & [HEAD comp] > ].
 
+; Verbo ditransitivo de complementos NP PP
 word_verb_ditransitive_a := word & 
 	[ HEAD verb,
 	  SPR < [HEAD noun] >,
 	  COMPS < phrase & [HEAD noun], phrase & [HEAD prep] > ].
 
+; Verbo ditransitivo de complementos PP NP
 word_verb_ditransitive_b := word & 
 	[ HEAD verb,
 	  SPR < [HEAD noun] >,
 	  COMPS < phrase & [HEAD prep], phrase & [HEAD noun] > ].
 
-
 word_det := word & [ HEAD det,
 	      SPR < >,
 	      COMPS < > ].
 
-word_prep_non_noun := word & [ HEAD prep-non-nounable,
+word_prep_verb := word & [ HEAD prep-verb,
 	       SPR < >,
 	       COMPS < phrase & [HEAD noun] > ].
 
@@ -94,17 +127,3 @@ loc_adv := phrase & [ HEAD l_adv ].
 word_adj := word & [ HEAD adj,
   	      SPR < >,
   	      COMPS < > ].
-
-;;;;;;;;;;;;;;;;;;;;;;;
-
-string := *top*.
-
-*list* := *top*.
-
-*ne-list* := *list* &
- [ FIRST *top*,
-   REST *list* ].
-
-*null* := *list*.
-
-

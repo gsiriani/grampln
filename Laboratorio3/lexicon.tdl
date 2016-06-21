@@ -139,10 +139,10 @@ volvieron_ditransitive := word_verb_ditransitive & [HEAD [AGR [NUM pl, PER ter]]
 ;; -------------
 
 de := word_prep_noun & [ ORTH "de" ].
-a := word_prep_non_noun & [ ORTH "a" ].
-para := word_prep_non_noun & [ ORTH "para" ].
-desde := word_prep_non_noun & [ ORTH "desde" ].
-hasta := word_prep_non_noun & [ ORTH "hasta" ].
+a := word_prep_verb & [ ORTH "a" ].
+para := word_prep_verb & [ ORTH "para" ].
+desde := word_prep_verb & [ ORTH "desde" ].
+hasta := word_prep_verb & [ ORTH "hasta" ].
 
 ;; Adverbios
 ;; ---------

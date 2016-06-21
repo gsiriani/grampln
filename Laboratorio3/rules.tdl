@@ -1,3 +1,4 @@
+; Las palabras que no requieren complementos son elevadas a frases
 head-complement-rule-0 := phrase & 
 [ HEAD #0,
   SPR #a,
@@ -8,18 +9,20 @@ head-complement-rule-0 := phrase &
            COMPS < >, 
            LOC < > ] >  ].
 
-
+; Las palabras y frases que requieren y presentan un complemento son elevadas a frases
+; Se requiere que su complemento se encuentre totalmente complementado
 head-complement-rule-1 := phrase &
 [ HEAD #0,
   SPR #a, 
   COMPS < >,   
-
   ARGS < sign & 
          [ HEAD #0,
            SPR #a, 
            COMPS < #1 & [ SPR < > ] > ],  #1 & [ COMPS < > ] >  ].
 
-head-complement-rule-1-1 := phrase &
+; Las palabras y frases que requieren dos complementos y presentan uno, lo consumen
+; El complemento a consumir debe encontrarse totalmente especificado
+head-complement-rule-2 := phrase &
 [ HEAD #0,
   SPR #a, 
   COMPS < #2 >,   
@@ -29,6 +32,7 @@ head-complement-rule-1-1 := phrase &
            SPR #a, 
            COMPS < #1, #2 & [ SPR < > ] > ],  #1 >  ].
 
+; Agrupa las frases con un especificador si hay concordancia en numero, genero y persona
 head-specifier-rule := phrase &
 [ HEAD #0,
   SPR < >,
@@ -39,17 +43,7 @@ head-specifier-rule := phrase &
                                SPR < #1 >,
                                COMPS <> ] > ].
 
-head-modifier-rule-adv := phrase &
-[ HEAD #head,
-  SPR < #spr >,
-  COMPS #comps,
-  ARGS < sign & #hdtr &
-         [ SPR < #spr >,
-           COMPS #comps,
-	   HEAD #head ],
-         word & 
-         [HEAD l_adv & [MOD < #hdtr > ]] > ].
-
+; Asocia los modificadores si coinciden en numero y genero
 head-modifier-rule-agr := phrase &
 [ HEAD #head,
   SPR < #spr >,
@@ -62,7 +56,8 @@ head-modifier-rule-agr := phrase &
          [HEAD [MOD < #hdtr > ]] & [HEAD [ AGR [ NUM #n, GEN #g ] ] ]
 	> ].
 
-head-modifier-rule_2 := phrase &
+; Asocia los modificadores de las locuciones adverbiales
+head-modifier-rule-adv := phrase &
 [ HEAD #head,
   SPR < #spr >,
   COMPS #comps,
@@ -73,13 +68,15 @@ head-modifier-rule_2 := phrase &
          loc_adv & 
          [HEAD [MOD < #hdtr > ]] > ].
 
-
+; Crea una locucion adverbial a partir de un adverbio
 loc-adv-rule-0 := loc_adv &
 [ SPR < >,
   COMPS < >,
   ARGS < word_adv >
 ].
 
+; Crea una locucion adverbial adjuntando un adverbio a una estructura especificada
+; por el rasgo LOC
 loc-adv-rule-1 := loc_adv &
 [ SPR < >,
   COMPS < >,
